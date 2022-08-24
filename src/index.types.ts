@@ -1,20 +1,22 @@
-import type { TextFieldProps } from '@mui/material/TextField'
-import type { HEX, HSL, HSV, RGB } from 'color-convert/conversions'
+// import type { TextFieldProps } from '@mui/material/TextField'
 
-type BaseTextFieldProps = Omit<
-  TextFieldProps,
-  'onChange' | 'select' | 'type' | 'multiline' | 'defaultValue'
->
+import type {
+  ColorFormats,
+  ColorInput as ColorInputValue
+} from '@ctrl/tinycolor'
 
-export type Colors = {
-  hex: HEX
-  hsl: HSL
-  hsv: HSV
-  rgb: RGB
-}
+// type BaseTextFieldProps = Omit<
+//   TextFieldProps,
+//   'onChange' | 'select' | 'type' | 'multiline' | 'defaultValue'
+// >
 
-export type Alpha = number
+export type ColorFormat = Extract<'hex' | 'rgb', ColorFormats>
 
-export interface MuiColorInputProps extends BaseTextFieldProps {
-  value: string
+export type { ColorInputValue }
+
+export interface MuiColorInputProps {
+  value: ColorInputValue
+  visibleFormats?: ColorFormat[]
+  defaultFormat?: ColorFormat
+  onChange?: (value: ColorInputValue) => void
 }

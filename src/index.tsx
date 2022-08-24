@@ -1,39 +1,55 @@
 import React from 'react'
 import ColorButton from '@components/ColorButton/ColorButton'
 import ColorPopover from '@components/ColorPopover/ColorPopover'
-import { Colors } from 'index.types'
+import ColorPopoverBody from '@components/ColorPopoverBody/ColorPopoverBody'
+import { TinyColor } from '@ctrl/tinycolor'
+import type {
+  ColorFormat,
+  ColorInputValue,
+  MuiColorInputProps
+} from 'index.types'
 
-const MuiColorInput = () => {
-  const [isPopoverOpened, setIsPopoverOpened] = React.useState<boolean>(false)
-  const [currentHex, setCurrentHex] = React.useState<Colors['hex']>('')
+export type { ColorFormat, MuiColorInputProps, ColorInputValue }
+
+const MuiColorInput = (props: MuiColorInputProps) => {
+  const { value, defaultFormat, visibleFormats, onChange } = props
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null)
+  const currentTinyColor = new TinyColor(value)
 
   const handleClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     event.preventDefault()
-    setIsPopoverOpened(true)
+    setAnchorEl(event.currentTarget)
   }
 
   const handleClose = () => {
-    setIsPopoverOpened(false)
+    setAnchorEl(null)
   }
 
-  const handleChange = (hexValue: Colors['hex']) => {
-    setCurrentHex(hexValue)
-    console.log({ hexValue })
-  }
+  const isOpen = Boolean(anchorEl)
+  const id = isOpen ? 'color-popover' : undefined
 
   return (
     <>
       <ColorButton
-        sx={{ backgroundColor: currentHex ? `#${currentHex}` : '' }}
+        aria-describedby={id}
+        sx={{ backgroundColor: '' }}
         onClick={handleClick}
       />
       <ColorPopover
-        open={isPopoverOpened}
-        onHexChange={handleChange}
+        id={id}
+        open={isOpen}
+        anchorEl={anchorEl}
         onClose={handleClose}
-      />
+      >
+        <ColorPopoverBody
+          onChange={onChange}
+          currentColor={currentTinyColor}
+          visibleFormats={visibleFormats}
+          defaultFormat={defaultFormat}
+        />
+      </ColorPopover>
     </>
   )
 }

@@ -1,7 +1,8 @@
 import React from 'react'
+import { action } from '@storybook/addon-actions'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import { MuiColorInput } from './index'
+import { ColorInputValue, MuiColorInput, MuiColorInputProps } from './index'
 
 export default {
   title: 'MuiColorInput',
@@ -9,5 +10,14 @@ export default {
 } as ComponentMeta<typeof MuiColorInput>
 
 export const Primary: ComponentStory<typeof MuiColorInput> = () => {
-  return <MuiColorInput />
+  const [value, setValue] = React.useState<ColorInputValue>('#ffffff')
+
+  const handleChange = (
+    ...argsChange: Parameters<NonNullable<MuiColorInputProps['onChange']>>
+  ) => {
+    action('onChange')(argsChange)
+    setValue(argsChange[0])
+  }
+
+  return <MuiColorInput value={value} onChange={handleChange} />
 }

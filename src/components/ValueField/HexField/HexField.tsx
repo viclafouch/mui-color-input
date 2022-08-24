@@ -16,7 +16,7 @@ const HexField = (props: HexFieldProps) => {
         size="small"
         InputLabelProps={{ shrink: true }}
         fullWidth
-        value={`#${value}`}
+        value={value}
       />
     </Box>
   )
