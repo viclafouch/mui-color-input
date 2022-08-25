@@ -1,6 +1,11 @@
-import { TinyColor } from '@ctrl/tinycolor'
-import { DEFAULT_FORMAT_FALLBACK } from '@shared/constants/formats'
-import { ColorFormat } from 'index.types'
+import { ColorInput, TinyColor, TinyColorOptions } from '@ctrl/tinycolor'
+import {
+  COLOR_FALLBACK,
+  DEFAULT_FORMAT_FALLBACK
+} from '@shared/constants/formats'
+import { matchIsString } from '@shared/helpers/string'
+
+import type { ColorFormat } from '../../index.types'
 
 export function getInitialDefaultFormat(
   defaultFormat?: ColorFormat,
@@ -17,6 +22,27 @@ export function getInitialDefaultFormat(
     : visibleFormats[0]
 }
 
-export function buildValueFromTinyColor(tinyColor: TinyColor): string {
-  return tinyColor.toRgbString()
+export function buildValueFromTinyColor(
+  tinyColor: TinyColor,
+  format: ColorFormat
+): string {
+  return tinyColor.toString(format)
+}
+
+export function getSafeTinyColor(
+  color?: ColorInput,
+  options?: Partial<TinyColorOptions>
+): TinyColor {
+  return new TinyColor(
+    color === 'transparent' ? COLOR_FALLBACK : color,
+    options
+  )
+}
+
+export function stringifyInputValue(inputValue: ColorInput): string {
+  if (matchIsString(inputValue)) {
+    return inputValue
+  }
+  const tinyColor = new TinyColor(inputValue)
+  return tinyColor.toString()
 }

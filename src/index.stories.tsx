@@ -10,7 +10,7 @@ export default {
 } as ComponentMeta<typeof MuiColorInput>
 
 export const Primary: ComponentStory<typeof MuiColorInput> = () => {
-  const [value, setValue] = React.useState<ColorInputValue>('#ffffff')
+  const [value, setValue] = React.useState<ColorInputValue>('black')
 
   const handleChange = (
     ...argsChange: Parameters<NonNullable<MuiColorInputProps['onChange']>>
@@ -19,5 +19,12 @@ export const Primary: ComponentStory<typeof MuiColorInput> = () => {
     setValue(argsChange[0])
   }
 
-  return <MuiColorInput value={value} onChange={handleChange} />
+  return (
+    <MuiColorInput
+      value={value}
+      format="rgb"
+      onChange={handleChange}
+      isAlphaHidden
+    />
+  )
 }

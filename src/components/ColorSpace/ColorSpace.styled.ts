@@ -1,14 +1,14 @@
 import { styled } from '@mui/material/styles'
+import { BG_IMAGE_SPACE } from '@shared/constants/styles'
 
 const Styled = {
   Space: styled('div')(() => {
     return {
       width: '100%',
-      height: 180,
+      height: '180px',
       boxSizing: 'border-box',
       position: 'relative',
-      backgroundImage:
-        'linear-gradient(to top, #000000, transparent), linear-gradient(to right, #ffffff, transparent)'
+      backgroundImage: BG_IMAGE_SPACE
     }
   }),
   Thumb: styled('div')(() => {
@@ -16,10 +16,10 @@ const Styled = {
       position: 'absolute',
       border: '3px solid #ffffff',
       borderRadius: '50%',
-      width: 24,
-      height: 24,
-      marginLeft: -12,
-      marginBottom: -12,
+      width: '20px',
+      height: '20px',
+      marginLeft: '-10px',
+      marginBottom: '-10px',
       boxSizing: 'border-box',
       willChange: 'left, bottom'
     }

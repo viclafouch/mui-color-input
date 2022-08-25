@@ -31,8 +31,7 @@ export default defineConfig({
           '@mui/material/Popover': 'Popover',
           '@mui/material/Slider': 'Slider',
           '@mui/material/TextField': 'TextField',
-          '@mui/icons-material/UnfoldMore': 'UnfoldMore',
-          '@mui/material/IconButton': 'IconButton',
+          '@mui/material/InputAdornment': 'InputAdornment',
           '@mui/material/styles': 'styles',
           'react/jsx-runtime': 'jsxRuntime',
         }
