@@ -7,7 +7,7 @@
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/viclafouch/mui-color-input/blob/master/LICENSE)
 ![ts](https://badgen.net/badge/Built%20With/TypeScript/blue)
 [![npm](https://img.shields.io/npm/v/mui-color-input)](https://www.npmjs.com/package/mui-color-input)
-[![CircleCI](https://circleci.com/gh/viclafouch/mui-color-input/tree/master.svg?style=svg)](https://circleci.com/gh/viclafouch/mui-color-input/tree/master)
+[![CircleCI](https://circleci.com/gh/viclafouch/mui-color-input/tree/master.svg?style=svg)](https://circleci.com/gh/viclafouch/mui-color-input/tree/main)
 
 </div>
 
