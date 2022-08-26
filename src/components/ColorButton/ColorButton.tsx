@@ -27,7 +27,7 @@ const ColorButton = (props: ColorButtonProps) => {
         backgroundImage: isBgColorValid ? undefined : BG_IMAGE_FALLBACK,
         cursor: disablePopover ? 'default' : undefined
       }}
-      className={`MuiColorInput-ColorButton ${className || ''}`}
+      className={`MuiColorInput-Button ${className || ''}`}
       {...restButtonProps}
     />
   )
