@@ -74,7 +74,7 @@ const MyComponent = () => {
 
 | Name            | Type                            | Description                                                                                                                   |
 | --------------- | ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `value`         | A [color value](#ColorValue)                        | The color value (**Required**)                                                                                                                   |
+| `value`         | A [color value](#Color-Value)                        | The color value (**Required**)                                                                                                                   |
 | `onChange?`    | `(value, colors) => void`                     | Gets called once the user updates the color value.                      | `format?`        | `'hex' | 'rgb' | 'hsl' | 'hsv' | 'hex8`                        | The color will be visible in this format
 | `isAlphaHidden?`        | `boolean`                        | Whether to show input controls for a color’s alpha channel. Default `false`.
 | `disablePopover?`        | `boolean`                        | No popover / The color button is a `span` instead of a `button`. Default `false`.
@@ -87,9 +87,58 @@ const MyComponent = () => {
 
 While not explicitly documented above, the props of the [TextField](https://mui.com/api/text-field) component are also available on MuiColorInput.
 
-## ColorValue
+## Color Value
 
-WIP
+The string parsing is very permissive. It is meant to make typing a color as input as easy as possible. All commas, percentages, parenthesis are optional, and most input allow either 0-1, 0%-100%, or 0-n (where n is either 100, 255, or 360 depending on the value).
+
+HSL and HSV both require either 0%-100% or 0-1 for the `S`/`L`/`V` properties. The `H` (hue) can have values between 0%-100% or 0-360.
+
+RGB input requires either 0-255 or 0%-100%.
+
+Source : https://github.com/scttcper/tinycolor#accepted-string-input
+
+Here are some examples of string input:
+
+### Hex, 8-digit (RGBA) Hex
+
+```ts
+'#000'
+'000'
+'#369C'
+'369C'
+'#f0f0f6'
+'f0f0f6'
+'#f0f0f688'
+'f0f0f688'
+```
+
+### RGB, RGBA
+
+```ts
+'rgb (255, 0, 0)'
+'rgb 255 0 0'
+'rgba (255, 0, 0, .5)'
+{ r: 255, g: 0, b: 0 }
+```
+
+### HSL, HSLA
+
+```ts
+'hsl(0, 100%, 50%)'
+'hsla(0, 100%, 50%, .5)'
+'hsl(0, 100%, 50%)'
+'hsl 0 1.0 0.5'
+{ h: 0, s: 1, l: 0.5 }
+```
+
+### HSV, HSVA
+
+```ts
+'hsv(0, 100%, 100%)'
+'hsva(0, 100%, 100%, .5)'
+'hsv (0 100% 100%)'
+'hsv 0 1 1'
+{ h: 0, s: 100, v: 100 }
 
 ## CSS
 
