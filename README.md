@@ -1,5 +1,5 @@
 <div align="center">
-<h1>MUI tel input</h1>
+<h1>MUI color input</h1>
   <p>A color input designed for the React library <a href="https://mui.com/">MUI</a></p>
 </div>
 <div align="center">
@@ -93,8 +93,8 @@ WIP
 
 | 	Global class                            | Description                                                                                                                   |
 | ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `.MuiTelInput-TextField`                        | 	Styles applied to the root element.                                                                                                                   |
-| `.MuiTelInput-Button`                        | 	Styles applied to the [Button](https://mui.com/material-ui/api/button/) component                                                                                                                  |
+| `.MuiColorInput-TextField`                        | 	Styles applied to the root element.                                                                                                                   |
+| `.MuiColorInput-Button`                        | 	Styles applied to the [Button](https://mui.com/material-ui/api/button/) component                                                                                                                  |
 | `.MuiColorInput-Popover`                        | 	Styles applied to the [Popover](https://mui.com/material-ui/api/popover/) component
 | `.MuiColorInput-ColorSpace`                        | 	Styles applied to the ColorSpace component                                                                                                                  |
 | `.MuiColorInput-HueSlider`                      | 	Styles applied to the Hue [Slider](https://mui.com/material-ui/api/slider/)
