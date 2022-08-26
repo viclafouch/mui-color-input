@@ -139,6 +139,7 @@ Here are some examples of string input:
 'hsv (0 100% 100%)'
 'hsv 0 1 1'
 { h: 0, s: 100, v: 100 }
+```
 
 ## CSS
 
