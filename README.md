@@ -9,6 +9,10 @@
 
 </div>
 
+<div align="center">
+  <img src="https://github.com/viclafouch/mui-color-input/blob/master/mui-color-input.gif" width="100%" />
+</div>
+
 ## Installation
 
 ```
