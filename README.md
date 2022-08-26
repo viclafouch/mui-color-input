@@ -54,7 +54,7 @@ import { MuiColorInput, matchIsValidColor } from 'mui-color-input'
 
 const MyComponent = () => {
   const [value, setValue] = React.useState('#ffffff')
-  const [isValid, setIsValid] = React.useState(false)
+  const [isValid, setIsValid] = React.useState(matchIsValidColor(value))
 
   const handleChange = (newValue) => {
     setIsValid(matchIsValidColor(newValue))
