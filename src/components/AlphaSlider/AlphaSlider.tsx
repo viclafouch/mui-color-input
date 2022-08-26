@@ -1,6 +1,6 @@
 import React from 'react'
-import { SliderProps } from '@mui/material/Slider'
-import { RGB } from '@ctrl/tinycolor'
+import type { SliderProps } from '@mui/material/Slider'
+import type { RGB } from '@ctrl/tinycolor'
 
 import { Styled } from './AlphaSlider.styled'
 
@@ -9,12 +9,19 @@ type AlphaSliderProps = SliderProps & {
 }
 
 const AlphaSlider = (props: AlphaSliderProps) => {
-  const { rgbColor, ...restSliderProps } = props
+  const { rgbColor, style, className, ...restSliderProps } = props
+
+  const sliderStyle = {
+    '--rgb-r': rgbColor.r,
+    '--rgb-g': rgbColor.g,
+    '--rgb-b': rgbColor.b,
+    ...style
+  } as React.CSSProperties
 
   return (
     <Styled.Slider
-      $rgbaFrom={`rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, 0)`}
-      $rgbaTo={`rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, 1)`}
+      className={`MuiColorInput-AlphaSlider ${className || ''}`}
+      style={sliderStyle}
       {...restSliderProps}
     />
   )

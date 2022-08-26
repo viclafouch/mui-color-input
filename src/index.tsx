@@ -6,7 +6,7 @@ import ColorPopover from '@components/ColorPopover/ColorPopover'
 import ColorPopoverBody from '@components/ColorPopoverBody/ColorPopoverBody'
 import ColorTextField from '@components/ColorTextField/ColorTextField'
 import { TinyColor } from '@ctrl/tinycolor'
-import { COLOR_FALLBACK } from '@shared/constants/formats'
+import { COLOR_FALLBACK, FORMAT_FALLBACK } from '@shared/constants/fallback'
 import {
   buildValueFromTinyColor,
   getSafeTinyColor,
@@ -15,14 +15,19 @@ import {
 import { assocRefToPropRef } from '@shared/helpers/ref'
 
 import type {
-  ColorFormat,
-  ColorInputValue,
-  MuiColorInputProps
+  MuiColorInputFormat,
+  MuiColorInputProps,
+  MuiColorInputValue
 } from './index.types'
 
-export type { ColorFormat, MuiColorInputProps, ColorInputValue, TinyColor }
+export type {
+  MuiColorInputFormat,
+  MuiColorInputProps,
+  MuiColorInputValue,
+  TinyColor
+}
 
-export function matchIsValidColor(color: ColorInputValue): boolean {
+export function matchIsValidColor(color: MuiColorInputValue): boolean {
   return new TinyColor(color).isValid
 }
 
@@ -33,27 +38,38 @@ const MuiColorInput = React.forwardRef(
       format,
       onChange,
       PopoverProps,
+      fallbackValue,
       isAlphaHidden,
+      disablePopover,
       ...restProps
     } = props
     const { onBlur, InputProps, ...restTextFieldProps } = restProps
     const { onClose, ...restPopoverProps } = PopoverProps || {}
+    const fallbackValueSafe: MuiColorInputValue =
+      fallbackValue || COLOR_FALLBACK
+    const isDisabled =
+      restTextFieldProps.disabled || InputProps?.disabled || false
     const textFieldRef = React.useRef<HTMLDivElement>(null)
+    const inputRef = React.useRef<HTMLInputElement>(null)
     const [anchorEl, setAnchorEl] = React.useState<HTMLDivElement | null>(null)
-    const currentFormat: ColorFormat = format || 'hex'
-    const currentTinyColor = getSafeTinyColor(value, { format: currentFormat })
-    const [inputValue, setInputValue] = React.useState<ColorInputValue>(
-      currentTinyColor.toString()
-    )
+    const currentFormat: MuiColorInputFormat = format || FORMAT_FALLBACK
+    const currentTinyColor = getSafeTinyColor(value, fallbackValueSafe, {
+      format: currentFormat
+    })
+    const [inputValue, setInputValue] =
+      React.useState<MuiColorInputValue>(value)
     const [previousValue, setPreviousValue] =
-      React.useState<ColorInputValue>(value)
+      React.useState<MuiColorInputValue>(value)
 
     const handleClick = (
       event: React.MouseEvent<HTMLButtonElement, MouseEvent>
     ) => {
       event.preventDefault()
       event.stopPropagation()
-      setAnchorEl(textFieldRef.current)
+
+      if (!isDisabled && !disablePopover) {
+        setAnchorEl(textFieldRef.current)
+      }
     }
 
     const handleChange = (newValue: string) => {
@@ -82,6 +98,9 @@ const MuiColorInput = React.forwardRef(
     ) => {
       onClose?.(...args)
       setAnchorEl(null)
+      queueMicrotask(() => {
+        inputRef.current?.focus()
+      })
     }
 
     const handleBlur = (
@@ -90,7 +109,7 @@ const MuiColorInput = React.forwardRef(
       onBlur?.(event)
       const tinyColorOfInputValue = new TinyColor(inputValue)
       if (!tinyColorOfInputValue.isValid) {
-        const tinyColor = new TinyColor(COLOR_FALLBACK)
+        const tinyColor = new TinyColor(fallbackValueSafe)
         const newValue = buildValueFromTinyColor(tinyColor, currentFormat)
         setInputValue(newValue)
         setPreviousValue(newValue)
@@ -104,12 +123,12 @@ const MuiColorInput = React.forwardRef(
 
     React.useEffect(() => {
       if (value !== previousValue) {
-        const tinyColor = getSafeTinyColor(value)
+        const tinyColor = getSafeTinyColor(value, fallbackValueSafe)
         const newValue = tinyColor.originalInput
         setPreviousValue(newValue)
         setInputValue(newValue)
       }
-    }, [value, previousValue])
+    }, [value, previousValue, fallbackValueSafe])
 
     const handlePopoverChange = (newValue: string) => {
       setInputValue(newValue)
@@ -125,6 +144,14 @@ const MuiColorInput = React.forwardRef(
       }
     }
 
+    const handleInputRef = (ref: HTMLInputElement | null): void => {
+      // @ts-ignore
+      inputRef.current = ref
+      if (inputRef) {
+        assocRefToPropRef(ref, inputRef)
+      }
+    }
+
     const isOpen = Boolean(anchorEl)
     const id = isOpen ? 'color-popover' : undefined
 
@@ -133,17 +160,25 @@ const MuiColorInput = React.forwardRef(
         <ColorTextField
           ref={handleRef}
           spellCheck="false"
+          type="text"
+          autoComplete="off"
           onChange={handleInputChange}
           value={stringifyInputValue(inputValue)}
           onBlur={handleBlur}
+          inputRef={handleInputRef}
+          disabled={isDisabled}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
                 <ColorButton
+                  disabled={isDisabled}
                   aria-describedby={id}
+                  disablePopover={disablePopover || false}
+                  // @ts-ignore
+                  component={disablePopover ? 'span' : undefined}
                   bgColor={currentTinyColor.toString()}
                   isBgColorValid={currentTinyColor.isValid}
-                  onClick={handleClick}
+                  onClick={disablePopover ? undefined : handleClick}
                 />
               </InputAdornment>
             ),
@@ -151,20 +186,22 @@ const MuiColorInput = React.forwardRef(
           }}
           {...restTextFieldProps}
         />
-        <ColorPopover
-          id={id}
-          open={isOpen}
-          anchorEl={anchorEl}
-          onClose={handleClose}
-          {...restPopoverProps}
-        >
-          <ColorPopoverBody
-            onChange={handlePopoverChange}
-            currentColor={currentTinyColor}
-            format={currentFormat}
-            isAlphaHidden={isAlphaHidden}
-          />
-        </ColorPopover>
+        {!disablePopover ? (
+          <ColorPopover
+            id={id}
+            open={isOpen}
+            anchorEl={anchorEl}
+            onClose={handleClose}
+            {...restPopoverProps}
+          >
+            <ColorPopoverBody
+              onChange={handlePopoverChange}
+              currentColor={currentTinyColor}
+              format={currentFormat}
+              isAlphaHidden={isAlphaHidden}
+            />
+          </ColorPopover>
+        ) : null}
       </>
     )
   }

@@ -3,23 +3,23 @@ import Box from '@mui/material/Box'
 import AlphaSlider from '@components/AlphaSlider/AlphaSlider'
 import ColorSpace from '@components/ColorSpace/ColorSpace'
 import HueSlider from '@components/HueSlider/HueSlider'
-import { TinyColor } from '@ctrl/tinycolor'
+import { HSV, Numberify, TinyColor } from '@ctrl/tinycolor'
 import { buildValueFromTinyColor } from '@shared/helpers/format'
 import { clamp, matchIsNumber } from '@shared/helpers/number'
 
-import type { ColorFormat, MuiColorInputProps } from '../../index.types'
+import type { MuiColorInputFormat, MuiColorInputProps } from '../../index.types'
 
 type ColorPopoverBodyProps = {
   currentColor: TinyColor
-  format: ColorFormat
+  format: MuiColorInputFormat
   isAlphaHidden: MuiColorInputProps['isAlphaHidden']
   onChange: (value: string) => void
 }
 
 const ColorPopoverBody = (props: ColorPopoverBodyProps) => {
   const { currentColor, format, onChange, isAlphaHidden } = props
-  const [currentHue, setCurrentHue] = React.useState<number>(
-    currentColor.toHsl().h
+  const [currentHsv, setCurrentHsv] = React.useState<Numberify<HSV>>(
+    currentColor.toHsv()
   )
 
   const handleChangeHue = (event: Event, hue: number | number[]) => {
@@ -27,9 +27,15 @@ const ColorPopoverBody = (props: ColorPopoverBodyProps) => {
       return
     }
     const newHue = clamp((360 * hue) / 100, 0, 359)
-    setCurrentHue(newHue)
+    setCurrentHsv((prevState) => {
+      return {
+        ...prevState,
+        h: newHue
+      }
+    })
     const tinyColor = new TinyColor({
-      ...currentColor.toHsl(),
+      ...currentHsv,
+      a: currentColor.toHsv().a,
       h: newHue
     })
     onChange?.(buildValueFromTinyColor(tinyColor, format))
@@ -43,20 +49,28 @@ const ColorPopoverBody = (props: ColorPopoverBodyProps) => {
     onChange?.(buildValueFromTinyColor(tinyColor, format))
   }
 
-  const handleChangeSpace = (saturation: number, bright: number) => {
+  const handleChangeSpace = ({ s, v }: Pick<Numberify<HSV>, 's' | 'v'>) => {
     const tinyColor = new TinyColor({
-      ...currentColor.toHsv(),
-      s: saturation,
-      v: bright
+      h: currentHsv.h,
+      a: currentColor.toHsv().a,
+      s,
+      v
+    })
+    setCurrentHsv((prevState) => {
+      return {
+        ...prevState,
+        s,
+        v
+      }
     })
     onChange?.(buildValueFromTinyColor(tinyColor, format))
   }
 
   return (
-    <Box>
+    <Box className="MuiColorInput-PopoverBody">
       <ColorSpace
-        currentHue={currentHue}
-        hsv={currentColor.toHsv()}
+        currentHue={currentHsv.h}
+        hsv={currentHsv}
         onChange={handleChangeSpace}
       />
       <Box mt="10px" px="3px">
@@ -65,7 +79,8 @@ const ColorPopoverBody = (props: ColorPopoverBodyProps) => {
           max={100}
           step={1}
           onChange={handleChangeHue}
-          value={(currentHue * 100) / 360}
+          aria-label="hue"
+          value={(currentHsv.h * 100) / 360}
         />
       </Box>
       {!isAlphaHidden ? (
@@ -74,6 +89,7 @@ const ColorPopoverBody = (props: ColorPopoverBodyProps) => {
             min={0}
             max={1}
             step={0.01}
+            aria-label="alpha"
             rgbColor={currentColor.toRgb()}
             onChange={handleChangeAlpha}
             value={currentColor.getAlpha()}

@@ -2,7 +2,7 @@ import React from 'react'
 import { action } from '@storybook/addon-actions'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
-import { ColorInputValue, MuiColorInput, MuiColorInputProps } from './index'
+import { MuiColorInput, MuiColorInputProps, MuiColorInputValue } from './index'
 
 export default {
   title: 'MuiColorInput',
@@ -10,7 +10,7 @@ export default {
 } as ComponentMeta<typeof MuiColorInput>
 
 export const Primary: ComponentStory<typeof MuiColorInput> = () => {
-  const [value, setValue] = React.useState<ColorInputValue>('black')
+  const [value, setValue] = React.useState<MuiColorInputValue>('black')
 
   const handleChange = (
     ...argsChange: Parameters<NonNullable<MuiColorInputProps['onChange']>>
@@ -19,12 +19,5 @@ export const Primary: ComponentStory<typeof MuiColorInput> = () => {
     setValue(argsChange[0])
   }
 
-  return (
-    <MuiColorInput
-      value={value}
-      format="rgb"
-      onChange={handleChange}
-      isAlphaHidden
-    />
-  )
+  return <MuiColorInput value={value} format="rgb" onChange={handleChange} />
 }

@@ -7,18 +7,27 @@ import { Styled } from './ColorButton.styled'
 type ColorButtonProps = Omit<ButtonProps, 'children'> & {
   bgColor: string
   isBgColorValid: boolean
+  disablePopover: boolean
 }
 
 const ColorButton = (props: ColorButtonProps) => {
-  const { bgColor, isBgColorValid, ...restButtonProps } = props
+  const {
+    bgColor,
+    className,
+    disablePopover,
+    isBgColorValid,
+    ...restButtonProps
+  } = props
 
   return (
     <Styled.Button
       disableTouchRipple
       style={{
         backgroundColor: isBgColorValid ? bgColor : undefined,
-        backgroundImage: isBgColorValid ? undefined : BG_IMAGE_FALLBACK
+        backgroundImage: isBgColorValid ? undefined : BG_IMAGE_FALLBACK,
+        cursor: disablePopover ? 'default' : undefined
       }}
+      className={`MuiColorInput-ColorButton ${className || ''}`}
       {...restButtonProps}
     />
   )

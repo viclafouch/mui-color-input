@@ -9,7 +9,7 @@ export function getNewThumbPosition(
   const positionX = clientX - boundingClientRect.left
   const positionY = clientY - boundingClientRect.top
   return {
-    x: clamp(positionX / boundingClientRect.width, 0.01, 1),
-    y: clamp(1 - positionY / boundingClientRect.height, 0.01, 1)
+    x: clamp(positionX / boundingClientRect.width, 0, 1),
+    y: clamp(1 - positionY / boundingClientRect.height, 0, 1)
   }
 }

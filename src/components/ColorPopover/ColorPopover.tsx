@@ -8,10 +8,11 @@ type ColorPopoverProps = PopoverProps & {
 }
 
 const ColorPopover = (props: ColorPopoverProps) => {
-  const { children, ...restPopoverProps } = props
+  const { children, className, ...restPopoverProps } = props
 
   return (
     <Popover
+      className={`MuiColorInput-Popover ${className || ''}`}
       anchorOrigin={{
         vertical: 'bottom',
         horizontal: 'left'

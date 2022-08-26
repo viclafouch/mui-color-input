@@ -7,6 +7,7 @@ const Styled = {
       width: '100%',
       height: '180px',
       boxSizing: 'border-box',
+      outline: 0,
       position: 'relative',
       backgroundImage: BG_IMAGE_SPACE
     }
@@ -20,8 +21,22 @@ const Styled = {
       height: '20px',
       marginLeft: '-10px',
       marginBottom: '-10px',
+      outline: 0,
       boxSizing: 'border-box',
-      willChange: 'left, bottom'
+      willChange: 'left, bottom',
+      transition: 'box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+
+      '&:hover': {
+        boxShadow: `0px 0px 0px 4px rgba(255 255 255 / 0.16)`
+      },
+
+      '&.MuiColorInput-Thumb-active': {
+        boxShadow: `0px 0px 0px 8px rgba(255 255 255 / 0.16)`
+      },
+
+      '@media (hover: none)': {
+        boxShadow: 'none'
+      }
     }
   })
 }

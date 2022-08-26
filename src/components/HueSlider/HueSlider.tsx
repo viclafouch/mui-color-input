@@ -1,12 +1,19 @@
 import React from 'react'
-import { SliderProps } from '@mui/material/Slider'
+import type { SliderProps } from '@mui/material/Slider'
 
 import { Styled } from './HueSlider.styled'
 
 type HueSliderProps = SliderProps
 
 const HueSlider = (props: HueSliderProps) => {
-  return <Styled.Slider {...props} />
+  const { className, ...restSliderProps } = props
+
+  return (
+    <Styled.Slider
+      className={`MuiColorInput-HueSlider ${className || ''}`}
+      {...restSliderProps}
+    />
+  )
 }
 
 export default HueSlider

@@ -5,7 +5,15 @@ type ColorTextFieldProps = TextFieldProps
 
 const ColorTextField = React.forwardRef(
   (props: ColorTextFieldProps, ref: React.ForwardedRef<HTMLDivElement>) => {
-    return <TextField ref={ref} {...props} />
+    const { className, ...restTextFieldProps } = props
+
+    return (
+      <TextField
+        className={`MuiColorInput-TextField ${className || ''}`}
+        ref={ref}
+        {...restTextFieldProps}
+      />
+    )
   }
 )
 
