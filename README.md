@@ -102,7 +102,7 @@ WIP
 
 ## Changelog
 
-Go to [Github Releases](https://github.com/viclafouch/mui-tel-input/releases)
+Go to [Github Releases](https://github.com/viclafouch/mui-color-input/releases)
 
 ## TypeScript
 
