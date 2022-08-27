@@ -78,9 +78,10 @@ const MuiColorInput = React.forwardRef(
       const tinyColor = new TinyColor(newValue)
       onChange?.(newValue, {
         hex: tinyColor.toHexString(),
-        hsv: tinyColor.toHsv(),
-        hsl: tinyColor.toHsl(),
-        rgb: tinyColor.toRgb()
+        hsv: tinyColor.toHsvString(),
+        hsl: tinyColor.toHslString(),
+        rgb: tinyColor.toRgbString(),
+        hex8: tinyColor.toHex8String()
       })
     }
 
@@ -156,6 +157,8 @@ const MuiColorInput = React.forwardRef(
 
     const isOpen = Boolean(anchorEl)
     const id = isOpen ? 'color-popover' : undefined
+
+    console.log(restTextFieldProps)
 
     return (
       <>

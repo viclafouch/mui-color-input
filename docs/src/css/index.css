@@ -1,0 +1,20 @@
+.main-wrapper {
+  display: flex;
+}
+
+
+.MuiColorInput-TextField input {
+  color: var(--ifm-color-black);
+}
+
+[data-theme="dark"] .MuiColorInput-TextField input {
+  color: var(--ifm-color-white);
+}
+
+.MuiColorInput-TextField fieldset {
+  border-color: var(--ifm-color-black)!important;
+}
+
+[data-theme="dark"] .MuiColorInput-TextField fieldset {
+  border-color: var(--ifm-color-white)!important;
+}

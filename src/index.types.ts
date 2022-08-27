@@ -2,10 +2,7 @@ import type { PopoverProps as MuiPopoverProps } from '@mui/material/Popover'
 import type { TextFieldProps as MuiTextFieldProps } from '@mui/material/TextField'
 import type {
   ColorFormats,
-  ColorInput as MuiColorInputValue,
-  HSL,
-  HSV,
-  RGB
+  ColorInput as MuiColorInputValue
 } from '@ctrl/tinycolor'
 
 export type MuiColorInputFormat = Extract<
@@ -24,9 +21,10 @@ type TextFieldProps = Omit<
 
 export type MuiColorInputColors = {
   hex: string
-  hsl: HSL
-  hsv: HSV
-  rgb: RGB
+  hsl: string
+  hsv: string
+  rgb: string
+  hex8: string
 }
 
 export interface MuiColorInputProps extends TextFieldProps {

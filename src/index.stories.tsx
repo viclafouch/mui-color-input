@@ -1,4 +1,5 @@
 import React from 'react'
+import { createTheme, ThemeProvider } from '@mui/material'
 import { action } from '@storybook/addon-actions'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
 
@@ -19,5 +20,14 @@ export const Primary: ComponentStory<typeof MuiColorInput> = () => {
     setValue(argsChange[0])
   }
 
-  return <MuiColorInput value={value} format="rgb" onChange={handleChange} />
+  return (
+    <ThemeProvider theme={createTheme()}>
+      <MuiColorInput
+        color="warning"
+        value={value}
+        format="rgb"
+        onChange={handleChange}
+      />
+    </ThemeProvider>
+  )
 }
