@@ -158,8 +158,6 @@ const MuiColorInput = React.forwardRef(
     const isOpen = Boolean(anchorEl)
     const id = isOpen ? 'color-popover' : undefined
 
-    console.log(restTextFieldProps)
-
     return (
       <>
         <ColorTextField

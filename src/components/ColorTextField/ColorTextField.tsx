@@ -6,7 +6,6 @@ type ColorTextFieldProps = TextFieldProps
 const ColorTextField = React.forwardRef(
   (props: ColorTextFieldProps, ref: React.ForwardedRef<HTMLDivElement>) => {
     const { className, ...restTextFieldProps } = props
-    console.log(restTextFieldProps)
 
     return (
       <TextField

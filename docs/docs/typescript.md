@@ -4,7 +4,9 @@ sidebar_position: 4
 
 # Typescript
 
-This package is written in **TypeScript**. So you don't need to create your own types. Here an example if you use **Typescript**. Props are defined within the `MuiColorInputProps` interface.
+This package is written in **TypeScript**. So you don't need to create your own types. Here an example if you use **TypeScript**.
+
+NB: Props are defined within the `MuiColorInputProps` interface.
 
 ```tsx
 import React from 'react'

@@ -10,6 +10,8 @@ export default {
   component: MuiColorInput
 } as ComponentMeta<typeof MuiColorInput>
 
+const theme = createTheme()
+
 export const Primary: ComponentStory<typeof MuiColorInput> = () => {
   const [value, setValue] = React.useState<MuiColorInputValue>('black')
 
@@ -21,7 +23,7 @@ export const Primary: ComponentStory<typeof MuiColorInput> = () => {
   }
 
   return (
-    <ThemeProvider theme={createTheme()}>
+    <ThemeProvider theme={theme}>
       <MuiColorInput
         color="warning"
         value={value}
