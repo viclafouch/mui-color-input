@@ -1,4 +1,7 @@
 <div align="center">
+  <img src="https://viclafouch.github.io/mui-color-input/img/logo.jpg" width="70" />
+</div>
+<div align="center">
 <h1>MUI color input</h1>
   <p>A color input designed for the React library <a href="https://mui.com/">MUI</a></p>
 </div>
@@ -44,102 +47,8 @@ const MyComponent = () => {
 }
 ```
 
-### Color validation
+## [Documentation](https://viclafouch.github.io/mui-color-input/)
 
-```jsx
-import React from 'react'
-import Box from '@mui/material/Box'
-import Typography from '@mui/material/Typography'
-import { MuiColorInput, matchIsValidColor } from 'mui-color-input'
-
-const MyComponent = () => {
-  const [value, setValue] = React.useState('#ffffff')
-  const [isValid, setIsValid] = React.useState(matchIsValidColor(value))
-
-  const handleChange = (newValue) => {
-    setIsValid(matchIsValidColor(newValue))
-    setValue(newValue)
-  }
-
-  return (
-    <Box>
-      <Typography>This is valid ? {isValid ? 'yes' : 'no'}</Typography>
-      <MuiColorInput value={value} onChange={handleChange} />
-    </Box>
-  )
-}
-```
-
-## Props
-
-| Name            | Type                            | Description                                                                                                                   |
-| --------------- | ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `value`         | A [color value](#Color-Value)                        | The color value (**Required**)                                                                                                                   |
-| `onChange?`    | `(value, colors) => void`                     | Gets called once the user updates the color value.                      | `format?`        | `'hex' | 'rgb' | 'hsl' | 'hsv' | 'hex8`                        | The color will be visible in this format
-| `isAlphaHidden?`        | `boolean`                        | Whether to show input controls for a color’s alpha channel. Default `false`.
-| `disablePopover?`        | `boolean`                        | No popover / The color button is a `span` instead of a `button`. Default `false`.
-| `fallbackValue?`        |  A [color value](#ColorValue)        | A fallback in case the user updates the input with an invalid color value.
-| `PopoverProps?`          | [Popover API](https://mui.com/api/popover)     | Props for the PopoverProps component.
-| `ref?`          | `React.Ref<HTMLDivElement>`     | A ref pointing to the [Mui TextField component](https://mui.com/components/text-fields/).
-| [TextField Props](#inheritance) | |
-
-### Inheritance
-
-While not explicitly documented above, the props of the [TextField](https://mui.com/api/text-field) component are also available on MuiColorInput.
-
-## Color Value
-
-The string parsing is very permissive. It is meant to make typing a color as input as easy as possible. All commas, percentages, parenthesis are optional, and most input allow either 0-1, 0%-100%, or 0-n (where n is either 100, 255, or 360 depending on the value).
-
-HSL and HSV both require either 0%-100% or 0-1 for the `S`/`L`/`V` properties. The `H` (hue) can have values between 0%-100% or 0-360.
-
-RGB input requires either 0-255 or 0%-100%.
-
-Source : https://github.com/scttcper/tinycolor#accepted-string-input
-
-Here are some examples of string input:
-
-### Hex, 8-digit (RGBA) Hex
-
-```ts
-'#000'
-'000'
-'#369C'
-'369C'
-'#f0f0f6'
-'f0f0f6'
-'#f0f0f688'
-'f0f0f688'
-```
-
-### RGB, RGBA
-
-```ts
-'rgb (255, 0, 0)'
-'rgb 255 0 0'
-'rgba (255, 0, 0, .5)'
-{ r: 255, g: 0, b: 0 }
-```
-
-### HSL, HSLA
-
-```ts
-'hsl(0, 100%, 50%)'
-'hsla(0, 100%, 50%, .5)'
-'hsl(0, 100%, 50%)'
-'hsl 0 1.0 0.5'
-{ h: 0, s: 1, l: 0.5 }
-```
-
-### HSV, HSVA
-
-```ts
-'hsv(0, 100%, 100%)'
-'hsva(0, 100%, 100%, .5)'
-'hsv (0 100% 100%)'
-'hsv 0 1 1'
-{ h: 0, s: 100, v: 100 }
-```
 
 ## CSS
 
