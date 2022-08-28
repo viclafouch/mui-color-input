@@ -20,7 +20,7 @@ const config = {
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'viclafouch', // Usually your GitHub org/user name.
   projectName: 'mui-color-input', // Usually your repo name.
-  deploymentBranch: 'gh-pages',
+  deploymentBranch: 'main',
   trailingSlash: true,
 
   // Even if you don't use internalization, you can use this field to set useful
