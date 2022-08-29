@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 
-# Typescript
+# TypeScript
 
 This package is written in **TypeScript**. So you don't need to create your own types. Here an example if you use **TypeScript**.
 
