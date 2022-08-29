@@ -31,6 +31,13 @@ const HomepageHeader = () => {
           A color input designed for the React library{' '}
           <Link target="_blank" href="https://mui.com">
             MUI
+          </Link>{' '}
+          built with{' '}
+          <Link
+            target="_blank"
+            href="https://www.npmjs.com/package/@ctrl/tinycolor"
+          >
+            TinyColor
           </Link>
           .
         </p>
