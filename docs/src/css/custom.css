@@ -13,6 +13,7 @@
   --ifm-breadcrumb-color-active: #000000;
   --ifm-menu-color-active: #000000;
   --ifm-background-color: #ffffff;
+  --ifm-link-color: #0072E5;
 
   --custom-ifm-heading-1: #007FFF;
 }
@@ -25,6 +26,7 @@ html[data-theme='dark'] {
   --ifm-breadcrumb-color-active: #ffffff;
   --ifm-menu-color-active: #ffffff;
   --ifm-background-color: #011E3C;
+  --ifm-link-color: #66b2ff;
 
   --custom-ifm-heading-1: #ffffff;
 }

@@ -10,7 +10,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula')
 const config = {
   title: 'MUI color input',
   tagline: 'A color input designed for the React library MUI',
-  url: 'https://viclafouch.github.io/',
+  url: 'https://viclafouch.github.io',
   baseUrl: '/mui-color-input/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -20,7 +20,7 @@ const config = {
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'viclafouch', // Usually your GitHub org/user name.
   projectName: 'mui-color-input', // Usually your repo name.
-  deploymentBranch: 'main',
+  deploymentBranch: 'gh-pages',
   trailingSlash: true,
 
   // Even if you don't use internalization, you can use this field to set useful
@@ -30,8 +30,6 @@ const config = {
     defaultLocale: 'en',
     locales: ['en']
   },
-
-  plugins: ['docusaurus-plugin-sass'],
 
   presets: [
     [
@@ -64,6 +62,11 @@ const config = {
           {
             href: 'https://github.com/viclafouch/mui-color-input',
             label: 'GitHub',
+            position: 'right'
+          },
+          {
+            href: 'https://www.npmjs.com/package/mui-color-input',
+            label: 'NPM',
             position: 'right'
           }
         ]

@@ -49,18 +49,6 @@ const MyComponent = () => {
 
 ## [Documentation](https://viclafouch.github.io/mui-color-input/)
 
-
-## CSS
-
-| 	Global class                            | Description                                                                                                                   |
-| ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `.MuiColorInput-TextField`                        | 	Styles applied to the root element.                                                                                                                   |
-| `.MuiColorInput-Button`                        | 	Styles applied to the [Button](https://mui.com/material-ui/api/button/) component                                                                                                                  |
-| `.MuiColorInput-Popover`                        | 	Styles applied to the [Popover](https://mui.com/material-ui/api/popover/) component
-| `.MuiColorInput-ColorSpace`                        | 	Styles applied to the ColorSpace component                                                                                                                  |
-| `.MuiColorInput-HueSlider`                      | 	Styles applied to the Hue [Slider](https://mui.com/material-ui/api/slider/)
-| `.MuiColorInput-AlphaSlider`                            | 	Styles applied to the Alpha [Slider](https://mui.com/material-ui/api/slider/)           |
-
 ## Changelog
 
 Go to [Github Releases](https://github.com/viclafouch/mui-color-input/releases)

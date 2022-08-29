@@ -17,11 +17,7 @@ const MyComponent = () => {
     matchIsValidColor(newValue) // boolean
   }
 
-  return (
-    <Box>
-      <MuiColorInput value={value} onChange={handleChange} />
-    </Box>
-  )
+  return <MuiColorInput value={value} onChange={handleChange} />
 }
 ```
 
