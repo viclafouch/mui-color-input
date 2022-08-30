@@ -16,6 +16,11 @@
   margin-top: 20px;
 }
 
+.subtitle {
+  max-width: 800px;
+  margin-inline: auto;
+}
+
 @media screen and (max-width: 996px) {
   .heroBanner {
     padding: 2rem;

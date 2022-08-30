@@ -27,7 +27,7 @@ const HomepageHeader = () => {
           alt="MUI color input"
         />
         <h1 className="hero__title">{siteConfig.title}</h1>
-        <p className="hero__subtitle">
+        <p className={clsx('hero__subtitle', styles.subtitle)}>
           A color input designed for the React library{' '}
           <Link target="_blank" href="https://mui.com">
             MUI
