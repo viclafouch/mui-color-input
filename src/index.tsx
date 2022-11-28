@@ -39,6 +39,7 @@ const MuiColorInput = React.forwardRef(
       value,
       format,
       onChange,
+      AdornmentProps,
       PopoverProps,
       fallbackValue,
       isAlphaHidden,
@@ -158,6 +159,32 @@ const MuiColorInput = React.forwardRef(
     const isOpen = Boolean(anchorEl)
     const id = isOpen ? 'color-popover' : undefined
 
+    const colorButtonProps = {
+      disabled: isDisabled,
+      'aria-describedby': id,
+      disablePopover: disablePopover || false,
+      // @ts-ignore
+      component: disablePopover ? 'span' : undefined,
+      bgColor: currentTinyColor.toString(),
+      isBgColorValid: currentTinyColor.isValid,
+      onClick: disablePopover ? undefined : handleClick
+    }
+    const InputButton = AdornmentProps.CustomAdornment ?? ColorButton
+    const colorButton = (
+      <InputAdornment position={AdornmentProps.position}>
+        <InputButton {...colorButtonProps} />
+      </InputAdornment>
+    )
+
+    const adornment =
+      AdornmentProps.position === 'start'
+        ? {
+            startAdornment: colorButton
+          }
+        : {
+            endAdornment: colorButton
+          }
+
     return (
       <>
         <ColorTextField
@@ -171,20 +198,7 @@ const MuiColorInput = React.forwardRef(
           inputRef={handleInputRef}
           disabled={isDisabled}
           InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <ColorButton
-                  disabled={isDisabled}
-                  aria-describedby={id}
-                  disablePopover={disablePopover || false}
-                  // @ts-ignore
-                  component={disablePopover ? 'span' : undefined}
-                  bgColor={currentTinyColor.toString()}
-                  isBgColorValid={currentTinyColor.isValid}
-                  onClick={disablePopover ? undefined : handleClick}
-                />
-              </InputAdornment>
-            ),
+            ...adornment,
             ...InputProps
           }}
           {...restTextFieldProps}
