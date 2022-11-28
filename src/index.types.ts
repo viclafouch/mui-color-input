@@ -1,5 +1,9 @@
 import type { PopoverProps as MuiPopoverProps } from '@mui/material/Popover'
 import type { TextFieldProps as MuiTextFieldProps } from '@mui/material/TextField'
+import {
+  ColorButtonElement,
+  ColorButtonProps
+} from '@components/ColorButton/ColorButton'
 import type {
   ColorFormats,
   ColorInput as MuiColorInputValue
@@ -10,7 +14,7 @@ export type MuiColorInputFormat = Extract<
   ColorFormats
 >
 
-export type { MuiColorInputValue }
+export type { MuiColorInputValue, ColorButtonProps }
 
 type PopoverProps = Omit<MuiPopoverProps, 'anchorEl' | 'open' | 'children'>
 
@@ -29,6 +33,8 @@ export type MuiColorInputColors = {
 
 export interface MuiColorInputProps extends TextFieldProps {
   value: MuiColorInputValue
+  adornmentPosition: 'start' | 'end'
+  Adornment?: ColorButtonElement
   fallbackValue?: MuiColorInputValue
   format?: MuiColorInputFormat
   disablePopover?: boolean

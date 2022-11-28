@@ -14,7 +14,14 @@ const MuiColorInputWrapper = (props: Partial<MuiColorInputProps>) => {
     onChange?.(newValue, colors)
   }
 
-  return <MuiColorInput value={state} onChange={handleChange} {...rest} />
+  return (
+    <MuiColorInput
+      value={state}
+      adornmentPosition="start"
+      onChange={handleChange}
+      {...rest}
+    />
+  )
 }
 
 describe('components/MuiColorInput', () => {
