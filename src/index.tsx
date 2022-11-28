@@ -39,7 +39,7 @@ const MuiColorInput = React.forwardRef(
       value,
       format,
       onChange,
-      AdornmentProps,
+      AdornmentProps = { position: 'start' },
       PopoverProps,
       fallbackValue,
       isAlphaHidden,

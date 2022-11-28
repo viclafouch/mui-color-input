@@ -38,7 +38,7 @@ export interface MuiColorInputProps extends TextFieldProps {
   disablePopover?: boolean
   isAlphaHidden?: boolean
   onChange?: (value: string, colors: MuiColorInputColors) => void
-  AdornmentProps: {
+  AdornmentProps?: {
     position: 'start' | 'end'
     CustomAdornment?: CustomColorbutton
   }
