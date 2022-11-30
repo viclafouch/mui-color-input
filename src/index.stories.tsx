@@ -69,6 +69,7 @@ export const PrimaryRight: ComponentStory<typeof MuiColorInput> = () => {
       color="warning"
       value={value}
       format="hex"
+      fullWidth
       onChange={handleChange}
       AdornmentProps={{ position: 'end' }}
     />

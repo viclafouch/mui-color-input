@@ -209,6 +209,7 @@ const MuiColorInput = React.forwardRef(
           <ColorPopover
             id={id}
             open={isOpen}
+            position={AdornmentProps.position}
             anchorEl={anchorEl}
             onClose={handleClose}
             {...restPopoverProps}
