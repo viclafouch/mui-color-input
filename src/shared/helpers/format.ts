@@ -15,7 +15,7 @@ export function getSafeTinyColor(
   fallbackColor?: MuiColorInputValue,
   options?: Partial<TinyColorOptions>
 ): TinyColor {
-  return new TinyColor(color === 'transparent' ? fallbackColor : color, options)
+  return new TinyColor(color, options)
 }
 
 export function stringifyInputValue(inputValue: ColorInput): string {

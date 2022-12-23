@@ -77,11 +77,11 @@ const MuiColorInput = React.forwardRef(
     const handleChange = (newValue: string) => {
       const tinyColor = new TinyColor(newValue)
       onChange?.(newValue, {
-        hex: tinyColor.toHexString(),
-        hsv: tinyColor.toHsvString(),
-        hsl: tinyColor.toHslString(),
-        rgb: tinyColor.toRgbString(),
-        hex8: tinyColor.toHex8String()
+        hex: tinyColor.isValid ? tinyColor.toHexString() : '',
+        hsv: tinyColor.isValid ? tinyColor.toHsvString() : '',
+        hsl: tinyColor.isValid ? tinyColor.toHslString() : '',
+        rgb: tinyColor.isValid ? tinyColor.toRgbString() : '',
+        hex8: tinyColor.isValid ? tinyColor.toHex8String() : ''
       })
     }
 
@@ -90,10 +90,15 @@ const MuiColorInput = React.forwardRef(
     ) => {
       const newInputValue = event.target.value
       setInputValue(newInputValue)
-      const tinyColor = new TinyColor(newInputValue)
-      const newValue = buildValueFromTinyColor(tinyColor, currentFormat)
-      setPreviousValue(newValue)
-      handleChange(newValue)
+      if (newInputValue === '') {
+        setPreviousValue('')
+        handleChange('')
+      } else {
+        const tinyColor = new TinyColor(newInputValue)
+        const newValue = buildValueFromTinyColor(tinyColor, currentFormat)
+        setPreviousValue(newValue)
+        handleChange(newValue)
+      }
     }
 
     const handleClose = (
@@ -112,6 +117,9 @@ const MuiColorInput = React.forwardRef(
       onBlur?.(event)
       const tinyColorOfInputValue = new TinyColor(inputValue)
       if (!tinyColorOfInputValue.isValid) {
+        if (inputValue === '') {
+          return
+        }
         const tinyColor = new TinyColor(fallbackValueSafe)
         const newValue = buildValueFromTinyColor(tinyColor, currentFormat)
         setInputValue(newValue)
@@ -180,7 +188,9 @@ const MuiColorInput = React.forwardRef(
                   // @ts-ignore
                   component={disablePopover ? 'span' : undefined}
                   bgColor={currentTinyColor.toString()}
-                  isBgColorValid={currentTinyColor.isValid}
+                  isBgColorValid={Boolean(
+                    inputValue !== '' && currentTinyColor.isValid
+                  )}
                   onClick={disablePopover ? undefined : handleClick}
                 />
               </InputAdornment>

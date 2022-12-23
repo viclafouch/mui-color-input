@@ -14,7 +14,7 @@ export default {
 } as ComponentMeta<typeof MuiColorInput>
 
 export const Primary: ComponentStory<typeof MuiColorInput> = () => {
-  const [value, setValue] = React.useState<MuiColorInputValue>('black')
+  const [value, setValue] = React.useState<MuiColorInputValue>('')
 
   const handleChange = (
     ...argsChange: Parameters<NonNullable<MuiColorInputProps['onChange']>>
@@ -23,14 +23,7 @@ export const Primary: ComponentStory<typeof MuiColorInput> = () => {
     setValue(argsChange[0])
   }
 
-  return (
-    <MuiColorInput
-      color="warning"
-      value={value}
-      format="rgb"
-      onChange={handleChange}
-    />
-  )
+  return <MuiColorInput value={value} format="rgb" onChange={handleChange} />
 }
 Primary.decorators = [
   (Story) => {
