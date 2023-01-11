@@ -1,5 +1,6 @@
 import React from 'react'
-import { createTheme, ThemeProvider } from '@mui/material'
+import { Button, createTheme, Icon, ThemeProvider } from '@mui/material'
+import { ColorButtonProps } from '@components/ColorButton/ColorButton'
 import createCache from '@emotion/cache'
 import { CacheProvider } from '@emotion/react'
 import { action } from '@storybook/addon-actions'
@@ -13,7 +14,16 @@ export default {
   component: MuiColorInput
 } as ComponentMeta<typeof MuiColorInput>
 
-export const Primary: ComponentStory<typeof MuiColorInput> = () => {
+const CustomAdornment = (props: ColorButtonProps) => {
+  const { onClick, bgColor } = props
+  return (
+    <Button sx={{ backgroundColor: bgColor }} onClick={onClick}>
+      <Icon />
+    </Button>
+  )
+}
+
+export const PrimaryLeft: ComponentStory<typeof MuiColorInput> = () => {
   const [value, setValue] = React.useState<MuiColorInputValue>('')
 
   const handleChange = (
@@ -23,9 +33,17 @@ export const Primary: ComponentStory<typeof MuiColorInput> = () => {
     setValue(argsChange[0])
   }
 
-  return <MuiColorInput value={value} format="rgb" onChange={handleChange} />
+  return (
+    <MuiColorInput
+      color="warning"
+      value={value}
+      format="rgb"
+      onChange={handleChange}
+      adornmentPosition="start"
+    />
+  )
 }
-Primary.decorators = [
+PrimaryLeft.decorators = [
   (Story) => {
     const theme = createTheme()
     return (
@@ -36,7 +54,71 @@ Primary.decorators = [
   }
 ]
 
-export const RTL: ComponentStory<typeof MuiColorInput> = Primary.bind({})
+export const PrimaryRight: ComponentStory<typeof MuiColorInput> = () => {
+  const [value, setValue] = React.useState<MuiColorInputValue>('black')
+
+  const handleChange = (
+    ...argsChange: Parameters<NonNullable<MuiColorInputProps['onChange']>>
+  ) => {
+    action('onChange')(argsChange)
+    setValue(argsChange[0])
+  }
+
+  return (
+    <MuiColorInput
+      color="warning"
+      value={value}
+      format="hex"
+      fullWidth
+      onChange={handleChange}
+      adornmentPosition="end"
+    />
+  )
+}
+PrimaryRight.decorators = [
+  (Story) => {
+    const theme = createTheme()
+    return (
+      <ThemeProvider theme={theme}>
+        <Story />
+      </ThemeProvider>
+    )
+  }
+]
+
+export const CustomButton: ComponentStory<typeof MuiColorInput> = () => {
+  const [value, setValue] = React.useState<MuiColorInputValue>('black')
+
+  const handleChange = (
+    ...argsChange: Parameters<NonNullable<MuiColorInputProps['onChange']>>
+  ) => {
+    action('onChange')(argsChange)
+    setValue(argsChange[0])
+  }
+
+  return (
+    <MuiColorInput
+      color="warning"
+      value={value}
+      format="hex"
+      onChange={handleChange}
+      adornmentPosition="end"
+      Adornment={CustomAdornment}
+    />
+  )
+}
+CustomButton.decorators = [
+  (Story) => {
+    const theme = createTheme()
+    return (
+      <ThemeProvider theme={theme}>
+        <Story />
+      </ThemeProvider>
+    )
+  }
+]
+
+export const RTL: ComponentStory<typeof MuiColorInput> = PrimaryLeft.bind({})
 RTL.decorators = [
   (Story) => {
     const rtlCache = createCache({
