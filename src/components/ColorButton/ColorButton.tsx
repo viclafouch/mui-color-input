@@ -1,23 +1,18 @@
-import React from 'react'
-import { ButtonProps } from '@mui/material/Button'
-import { BG_IMAGE_FALLBACK } from '@shared/constants/styles'
+import React from "react";
+import { ButtonProps } from "@mui/material/Button";
+import { BG_IMAGE_FALLBACK } from "@shared/constants/styles";
 
-import { Styled } from './ColorButton.styled'
+import { Styled } from "./ColorButton.styled";
 
-type ColorButtonProps = Omit<ButtonProps, 'children'> & {
-  bgColor: string
-  isBgColorValid: boolean
-  disablePopover: boolean
-}
+// Omit<ButtonProps, 'children'>
+type ColorButtonProps = ButtonProps & {
+  bgColor: string;
+  isBgColorValid: boolean;
+  disablePopover?: boolean;
+};
 
 const ColorButton = (props: ColorButtonProps) => {
-  const {
-    bgColor,
-    className,
-    disablePopover,
-    isBgColorValid,
-    ...restButtonProps
-  } = props
+  const { bgColor, className, disablePopover, isBgColorValid, ...rest } = props;
 
   return (
     <Styled.Button
@@ -25,12 +20,12 @@ const ColorButton = (props: ColorButtonProps) => {
       style={{
         backgroundColor: isBgColorValid ? bgColor : undefined,
         backgroundImage: isBgColorValid ? undefined : BG_IMAGE_FALLBACK,
-        cursor: disablePopover ? 'default' : undefined
+        cursor: disablePopover ? "default" : undefined,
       }}
-      className={`MuiColorInput-Button ${className || ''}`}
-      {...restButtonProps}
+      className={`MuiColorInput-Button ${className || ""}`}
+      {...rest}
     />
-  )
-}
+  );
+};
 
-export default ColorButton
+export default ColorButton;

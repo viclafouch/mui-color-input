@@ -1,20 +1,20 @@
-import React from 'react'
-import TextField, { TextFieldProps } from '@mui/material/TextField'
+import React from "react";
+import TextField, { TextFieldProps } from "@mui/material/TextField";
 
-type ColorTextFieldProps = TextFieldProps
+type ColorTextFieldProps = TextFieldProps;
 
 const ColorTextField = React.forwardRef(
   (props: ColorTextFieldProps, ref: React.ForwardedRef<HTMLDivElement>) => {
-    const { className, ...restTextFieldProps } = props
+    const { className, ...rest } = props;
 
     return (
       <TextField
-        className={`MuiColorInput-TextField ${className || ''}`}
+        className={`MuiColorInput-TextField ${className || ""}`}
         ref={ref}
-        {...restTextFieldProps}
+        {...rest}
       />
-    )
+    );
   }
-)
+);
 
-export default ColorTextField
+export default ColorTextField;
