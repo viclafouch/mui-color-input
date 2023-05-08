@@ -33,7 +33,7 @@ export type MuiColorInputColors = {
 
 export interface MuiColorInputProps extends TextFieldProps {
   value: MuiColorInputValue
-  adornmentPosition: 'start' | 'end'
+  adornmentPosition?: 'start' | 'end'
   Adornment?: ColorButtonElement
   fallbackValue?: MuiColorInputValue
   format?: MuiColorInputFormat
