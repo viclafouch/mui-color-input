@@ -15,7 +15,7 @@ import {
 import { assocRefToPropRef } from '@shared/helpers/ref'
 
 import type {
-  ColorButtonProps,
+  MuiColorButtonProps,
   MuiColorInputColors,
   MuiColorInputFormat,
   MuiColorInputProps,
@@ -27,7 +27,7 @@ export type {
   MuiColorInputProps,
   MuiColorInputValue,
   MuiColorInputColors,
-  ColorButtonProps,
+  MuiColorButtonProps,
   TinyColor
 }
 
