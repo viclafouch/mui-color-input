@@ -1,5 +1,5 @@
 import React from 'react'
-import Box from '@mui/material/Box'
+import { Box } from '@mui/material'
 import AlphaSlider from '@components/AlphaSlider/AlphaSlider'
 import ColorSpace from '@components/ColorSpace/ColorSpace'
 import HueSlider from '@components/HueSlider/HueSlider'
