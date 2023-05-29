@@ -1,8 +1,6 @@
 import React from 'react'
 import { render } from '@testing-library/react'
-
 import { MuiColorInput, MuiColorInputColors, MuiColorInputProps } from './index'
-
 import '@testing-library/jest-dom'
 
 const MuiColorInputWrapper = (props: Partial<MuiColorInputProps>) => {

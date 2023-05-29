@@ -6,7 +6,7 @@ export const KEYBOARD_KEY: Record<string, KeyboardEvent['key']> = {
 }
 
 type ArrowColorSpace = {
-  [key in typeof KEYBOARD_KEY[keyof typeof KEYBOARD_KEY]]: {
+  [key in (typeof KEYBOARD_KEY)[keyof typeof KEYBOARD_KEY]]: {
     type: 'hsvS' | 'hsvV'
     value: 1 | -1
   }

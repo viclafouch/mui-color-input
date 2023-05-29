@@ -5,7 +5,6 @@ import { matchIsArrowKey } from '@shared/helpers/event'
 import { clamp, round } from '@shared/helpers/number'
 import { getNewThumbPosition } from '@shared/helpers/space'
 import { useEvent } from '@shared/hooks/useEvent'
-
 import { Styled } from './ColorSpace.styled'
 
 type ColorSpaceProps = {

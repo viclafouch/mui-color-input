@@ -1,6 +1,5 @@
 import React from 'react'
 import type { SliderProps } from '@mui/material/Slider'
-
 import { Styled } from './HueSlider.styled'
 
 type HueSliderProps = SliderProps

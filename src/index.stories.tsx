@@ -1,19 +1,18 @@
 import React from 'react'
-import { createTheme, ThemeProvider } from '@mui/material'
+import rtlPlugin from 'stylis-plugin-rtl'
 import createCache from '@emotion/cache'
 import { CacheProvider } from '@emotion/react'
+import { createTheme, ThemeProvider } from '@mui/material'
 import { action } from '@storybook/addon-actions'
-import { ComponentMeta, ComponentStory } from '@storybook/react'
-import rtlPlugin from 'stylis-plugin-rtl'
-
+import { Meta, StoryFn } from '@storybook/react'
 import { MuiColorInput, MuiColorInputProps, MuiColorInputValue } from './index'
 
 export default {
   title: 'MuiColorInput',
   component: MuiColorInput
-} as ComponentMeta<typeof MuiColorInput>
+} as Meta<typeof MuiColorInput>
 
-export const Primary: ComponentStory<typeof MuiColorInput> = () => {
+export const Primary: StoryFn<typeof MuiColorInput> = () => {
   const [value, setValue] = React.useState<MuiColorInputValue>('')
 
   const handleChange = (
@@ -36,7 +35,7 @@ Primary.decorators = [
   }
 ]
 
-export const RTL: ComponentStory<typeof MuiColorInput> = Primary.bind({})
+export const RTL: StoryFn<typeof MuiColorInput> = Primary.bind({})
 RTL.decorators = [
   (Story) => {
     const rtlCache = createCache({

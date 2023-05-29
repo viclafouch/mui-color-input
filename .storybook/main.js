@@ -1,3 +1,4 @@
+const { loadConfigFromFile, mergeConfig } = require('vite')
 const path = require('path')
 
 module.exports = {
@@ -7,14 +8,21 @@ module.exports = {
     '@storybook/addon-essentials',
     '@storybook/addon-interactions'
   ],
-  framework: '@storybook/react',
-  webpackFinal: async (config, { configType }) => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      '@assets': path.resolve(__dirname, '../src/assets'),
-      '@shared': path.resolve(__dirname, '../src/shared'),
-      '@components': path.resolve(__dirname, '../src/components')
-    }
-    return config
+  framework: {
+    name: '@storybook/react-vite',
+    options: {}
+  },
+  async viteFinal(config) {
+    const { config: userConfig } = await loadConfigFromFile(
+      path.resolve(__dirname, '../vite.config.ts')
+    )
+
+    return mergeConfig(config, {
+      ...userConfig,
+      plugins: []
+    })
+  },
+  docs: {
+    autodocs: true
   }
 }
