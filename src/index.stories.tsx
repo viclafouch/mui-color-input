@@ -1,9 +1,9 @@
 import React from 'react'
-import { ColorButtonProps } from '@components/ColorButton/ColorButton'
 import rtlPlugin from 'stylis-plugin-rtl'
+import { ColorButtonProps } from '@components/ColorButton/ColorButton'
 import createCache from '@emotion/cache'
 import { CacheProvider } from '@emotion/react'
-import { createTheme, ThemeProvider, Icon, Button } from '@mui/material'
+import { Button, createTheme, Icon, ThemeProvider } from '@mui/material'
 import { action } from '@storybook/addon-actions'
 import { Meta, StoryFn } from '@storybook/react'
 import { MuiColorInput, MuiColorInputProps, MuiColorInputValue } from './index'
@@ -12,7 +12,6 @@ export default {
   title: 'MuiColorInput',
   component: MuiColorInput
 } as Meta<typeof MuiColorInput>
-
 
 const CustomAdornment = (props: ColorButtonProps) => {
   const { onClick, bgColor } = props
@@ -23,7 +22,7 @@ const CustomAdornment = (props: ColorButtonProps) => {
   )
 }
 
-export const Primary: StoryFn<typeof MuiColorInput> = () => {
+export const PrimaryLeft: StoryFn<typeof MuiColorInput> = () => {
   const [value, setValue] = React.useState<MuiColorInputValue>('')
 
   const handleChange = (
@@ -54,7 +53,7 @@ PrimaryLeft.decorators = [
   }
 ]
 
-export const PrimaryRight: ComponentStory<typeof MuiColorInput> = () => {
+export const PrimaryRight: StoryFn<typeof MuiColorInput> = () => {
   const [value, setValue] = React.useState<MuiColorInputValue>('black')
 
   const handleChange = (
@@ -86,7 +85,7 @@ PrimaryRight.decorators = [
   }
 ]
 
-export const CustomButton: ComponentStory<typeof MuiColorInput> = () => {
+export const CustomButton: StoryFn<typeof MuiColorInput> = () => {
   const [value, setValue] = React.useState<MuiColorInputValue>('black')
 
   const handleChange = (
@@ -118,7 +117,7 @@ CustomButton.decorators = [
   }
 ]
 
-export const RTL: StoryFn<typeof MuiColorInput> = Primary.bind({})
+export const RTL: StoryFn<typeof MuiColorInput> = PrimaryLeft.bind({})
 RTL.decorators = [
   (Story) => {
     const rtlCache = createCache({

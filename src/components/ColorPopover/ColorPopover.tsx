@@ -7,9 +7,12 @@ type ColorPopoverProps = PopoverProps & {
   children: React.ReactNode
 }
 
-const ColorPopover = (props: ColorPopoverProps) => {
-  const { children, className, position, ...restPopoverProps } = props
-
+const ColorPopover = ({
+  children,
+  className,
+  position = 'start',
+  ...restPopoverProps
+}: ColorPopoverProps) => {
   return (
     <Popover
       className={`MuiColorInput-Popover ${className || ''}`}
