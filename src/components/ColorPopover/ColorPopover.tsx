@@ -4,7 +4,7 @@ import Popover, { PopoverProps } from '@mui/material/Popover'
 import { Styled } from './ColorPopover.styled'
 
 type ColorPopoverProps = PopoverProps & {
-  position: 'start' | 'end'
+  position?: 'start' | 'end'
   children: React.ReactNode
 }
 
