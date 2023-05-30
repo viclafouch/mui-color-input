@@ -1,6 +1,6 @@
 import type { PopoverProps as MuiPopoverProps } from '@mui/material/Popover'
 import type { TextFieldProps as MuiTextFieldProps } from '@mui/material/TextField'
-import {
+import type {
   ColorButtonElement,
   ColorButtonProps
 } from '@components/ColorButton/ColorButton'
