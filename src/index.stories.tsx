@@ -1,18 +1,19 @@
 import React from 'react'
 import { Button, createTheme, Icon, ThemeProvider } from '@mui/material'
 import { ColorButtonProps } from '@components/ColorButton/ColorButton'
+import rtlPlugin from 'stylis-plugin-rtl'
 import createCache from '@emotion/cache'
 import { CacheProvider } from '@emotion/react'
+import { createTheme, ThemeProvider } from '@mui/material'
 import { action } from '@storybook/addon-actions'
-import { ComponentMeta, ComponentStory } from '@storybook/react'
-import rtlPlugin from 'stylis-plugin-rtl'
-
+import { Meta, StoryFn } from '@storybook/react'
 import { MuiColorInput, MuiColorInputProps, MuiColorInputValue } from './index'
 
 export default {
   title: 'MuiColorInput',
   component: MuiColorInput
-} as ComponentMeta<typeof MuiColorInput>
+} as Meta<typeof MuiColorInput>
+
 
 const CustomAdornment = (props: ColorButtonProps) => {
   const { onClick, bgColor } = props
@@ -23,7 +24,7 @@ const CustomAdornment = (props: ColorButtonProps) => {
   )
 }
 
-export const PrimaryLeft: ComponentStory<typeof MuiColorInput> = () => {
+export const Primary: StoryFn<typeof MuiColorInput> = () => {
   const [value, setValue] = React.useState<MuiColorInputValue>('')
 
   const handleChange = (
@@ -118,7 +119,7 @@ CustomButton.decorators = [
   }
 ]
 
-export const RTL: ComponentStory<typeof MuiColorInput> = PrimaryLeft.bind({})
+export const RTL: StoryFn<typeof MuiColorInput> = Primary.bind({})
 RTL.decorators = [
   (Story) => {
     const rtlCache = createCache({

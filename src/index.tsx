@@ -1,11 +1,11 @@
 import React from 'react'
-import InputAdornment from '@mui/material/InputAdornment'
-import type { PopoverProps } from '@mui/material/Popover'
 import ColorButton from '@components/ColorButton/ColorButton'
 import ColorPopover from '@components/ColorPopover/ColorPopover'
 import ColorPopoverBody from '@components/ColorPopoverBody/ColorPopoverBody'
 import ColorTextField from '@components/ColorTextField/ColorTextField'
 import { TinyColor } from '@ctrl/tinycolor'
+import InputAdornment from '@mui/material/InputAdornment'
+import type { PopoverProps } from '@mui/material/Popover'
 import { COLOR_FALLBACK, FORMAT_FALLBACK } from '@shared/constants/fallback'
 import {
   buildValueFromTinyColor,
@@ -13,7 +13,6 @@ import {
   stringifyInputValue
 } from '@shared/helpers/format'
 import { assocRefToPropRef } from '@shared/helpers/ref'
-
 import type {
   MuiColorButtonProps,
   MuiColorInputColors,

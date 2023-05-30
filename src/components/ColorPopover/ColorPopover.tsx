@@ -1,6 +1,5 @@
 import React from 'react'
 import Popover, { PopoverProps } from '@mui/material/Popover'
-
 import { Styled } from './ColorPopover.styled'
 
 type ColorPopoverProps = PopoverProps & {

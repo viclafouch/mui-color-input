@@ -5,7 +5,6 @@ import { matchIsArrowKey } from '@shared/helpers/event'
 import { clamp, round } from '@shared/helpers/number'
 import { getNewThumbPosition } from '@shared/helpers/space'
 import { useEvent } from '@shared/hooks/useEvent'
-
 import { Styled } from './ColorSpace.styled'
 
 type ColorSpaceProps = {
@@ -16,7 +15,7 @@ type ColorSpaceProps = {
 
 const ColorSpace = (props: ColorSpaceProps) => {
   const { hsv, onChange, currentHue } = props
-  const isMouseDown = React.useRef<boolean>(false)
+  const isPointerDown = React.useRef<boolean>(false)
   const spaceRef = React.useRef<HTMLDivElement>(null)
   const [isActive, setIsActive] = React.useState<boolean>(false)
 
@@ -35,15 +34,15 @@ const ColorSpace = (props: ColorSpaceProps) => {
     }
   })
 
-  const handleMouseUp = React.useCallback(() => {
-    if (isMouseDown.current) {
-      isMouseDown.current = false
+  const handlePointerUp = React.useCallback(() => {
+    if (isPointerDown.current) {
+      isPointerDown.current = false
       setIsActive(false)
     }
   }, [])
 
-  const handleMouseMove = React.useCallback((event: MouseEvent) => {
-    if (isMouseDown.current) {
+  const handlePointerMove = React.useCallback((event: PointerEvent) => {
+    if (isPointerDown.current) {
       moveThumb(event.clientX, event.clientY)
     }
     // moveThumb is a useEvent
@@ -51,20 +50,20 @@ const ColorSpace = (props: ColorSpaceProps) => {
   }, [])
 
   React.useEffect(() => {
-    document.addEventListener('mousemove', handleMouseMove, false)
-    document.addEventListener('mouseup', handleMouseUp, false)
+    document.addEventListener('pointermove', handlePointerMove, false)
+    document.addEventListener('pointerup', handlePointerUp, false)
 
     return () => {
-      document.removeEventListener('mousemove', handleMouseMove, false)
-      document.removeEventListener('mouseup', handleMouseUp, false)
+      document.removeEventListener('pointermove', handlePointerMove, false)
+      document.removeEventListener('pointerup', handlePointerUp, false)
     }
-  }, [handleMouseUp, handleMouseMove])
+  }, [handlePointerUp, handlePointerMove])
 
-  const handleMouseDown = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  const handlePointerDown = (
+    event: React.MouseEvent<HTMLDivElement, PointerEvent>
   ) => {
     event.preventDefault()
-    isMouseDown.current = true
+    isPointerDown.current = true
     moveThumb(event.clientX, event.clientY)
     setIsActive(true)
   }
@@ -93,11 +92,12 @@ const ColorSpace = (props: ColorSpaceProps) => {
 
   return (
     <Styled.Space
-      onMouseDown={handleMouseDown}
+      onPointerDown={handlePointerDown}
       ref={spaceRef}
       className="MuiColorInput-ColorSpace"
       style={{
-        backgroundColor: `hsl(${currentHue} 100% 50%)`
+        backgroundColor: `hsl(${currentHue} 100% 50%)`,
+        touchAction: 'none'
       }}
       role="slider"
       aria-valuetext={`Saturation ${round(

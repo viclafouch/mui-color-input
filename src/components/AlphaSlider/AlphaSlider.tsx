@@ -1,7 +1,6 @@
 import React from 'react'
-import type { SliderProps } from '@mui/material/Slider'
 import type { RGB } from '@ctrl/tinycolor'
-
+import type { SliderProps } from '@mui/material/Slider'
 import { Styled } from './AlphaSlider.styled'
 
 type AlphaSliderProps = SliderProps & {
