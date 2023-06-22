@@ -14,6 +14,7 @@ import {
 } from '@shared/helpers/format'
 import { assocRefToPropRef } from '@shared/helpers/ref'
 import type {
+  MuiColorButtonProps,
   MuiColorInputColors,
   MuiColorInputFormat,
   MuiColorInputProps,
@@ -25,6 +26,7 @@ export type {
   MuiColorInputProps,
   MuiColorInputValue,
   MuiColorInputColors,
+  MuiColorButtonProps,
   TinyColor
 }
 
@@ -38,7 +40,9 @@ const MuiColorInput = React.forwardRef(
       value,
       format,
       onChange,
+      adornmentPosition = 'start',
       PopoverProps,
+      Adornment = ColorButton,
       fallbackValue,
       isAlphaHidden,
       disablePopover,
@@ -165,6 +169,32 @@ const MuiColorInput = React.forwardRef(
     const isOpen = Boolean(anchorEl)
     const id = isOpen ? 'color-popover' : undefined
 
+    const colorButton = (
+      <InputAdornment position={adornmentPosition}>
+        <Adornment
+          disabled={isDisabled}
+          aria-describedby={id}
+          disablePopover={disablePopover || false}
+          // @ts-ignore
+          component={disablePopover ? 'span' : undefined}
+          bgColor={currentTinyColor.toString()}
+          isBgColorValid={Boolean(
+            inputValue !== '' && currentTinyColor.isValid
+          )}
+          onClick={disablePopover ? undefined : handleClick}
+        />
+      </InputAdornment>
+    )
+
+    const colorAdornment =
+      adornmentPosition === 'start'
+        ? {
+            startAdornment: colorButton
+          }
+        : {
+            endAdornment: colorButton
+          }
+
     return (
       <>
         <ColorTextField
@@ -178,22 +208,7 @@ const MuiColorInput = React.forwardRef(
           inputRef={handleInputRef}
           disabled={isDisabled}
           InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <ColorButton
-                  disabled={isDisabled}
-                  aria-describedby={id}
-                  disablePopover={disablePopover || false}
-                  // @ts-ignore
-                  component={disablePopover ? 'span' : undefined}
-                  bgColor={currentTinyColor.toString()}
-                  isBgColorValid={Boolean(
-                    inputValue !== '' && currentTinyColor.isValid
-                  )}
-                  onClick={disablePopover ? undefined : handleClick}
-                />
-              </InputAdornment>
-            ),
+            ...colorAdornment,
             ...InputProps
           }}
           {...restTextFieldProps}
@@ -202,6 +217,7 @@ const MuiColorInput = React.forwardRef(
           <ColorPopover
             id={id}
             open={isOpen}
+            position={adornmentPosition}
             anchorEl={anchorEl}
             onClose={handleClose}
             {...restPopoverProps}

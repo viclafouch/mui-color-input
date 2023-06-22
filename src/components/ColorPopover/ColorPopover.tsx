@@ -3,18 +3,26 @@ import Popover, { PopoverProps } from '@mui/material/Popover'
 import { Styled } from './ColorPopover.styled'
 
 type ColorPopoverProps = PopoverProps & {
+  position?: 'start' | 'end'
   children: React.ReactNode
 }
 
-const ColorPopover = (props: ColorPopoverProps) => {
-  const { children, className, ...restPopoverProps } = props
-
+const ColorPopover = ({
+  children,
+  className,
+  position = 'start',
+  ...restPopoverProps
+}: ColorPopoverProps) => {
   return (
     <Popover
       className={`MuiColorInput-Popover ${className || ''}`}
       anchorOrigin={{
         vertical: 'bottom',
-        horizontal: 'left'
+        horizontal: position === 'start' ? 'left' : 'right'
+      }}
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: position === 'start' ? 'left' : 'right'
       }}
       {...restPopoverProps}
     >
