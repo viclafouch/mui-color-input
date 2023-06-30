@@ -2,8 +2,8 @@
   <img src="https://viclafouch.github.io/mui-color-input/img/logo.jpg" width="70" />
 </div>
 <div align="center">
-<h1>MUI color input</h1>
-  <p>A color input designed for the React library <a href="https://mui.com/">MUI</a></p>
+<h1>Material UI color input</h1>
+  <p>A color input designed for the React library <a href="https://material-ui.com/">Material UI</a></p>
 </div>
 <div align="center">
 
@@ -51,7 +51,7 @@ const MyComponent = () => {
 
 ## Changelog
 
-Go to [Github Releases](https://github.com/viclafouch/mui-color-input/releases)
+Go to [GitHub Releases](https://github.com/viclafouch/mui-color-input/releases)
 
 ## TypeScript
 
