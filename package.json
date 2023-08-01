@@ -69,17 +69,17 @@
     }
   },
   "dependencies": {
-    "@ctrl/tinycolor": "^3.6.0",
-    "@emotion/react": "^11.5.0",
-    "@emotion/styled": "^11.3.0",
-    "@mui/material": "^5.0.0",
-    "@types/react": "^18.0.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "@ctrl/tinycolor": "^3.6.0"
   },
   "devDependencies": {
     "@emotion/cache": "^11.11.0",
     "@storybook/addon-actions": "^7.1.1",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@types/react": "^18.2.18",
     "@storybook/addon-essentials": "^7.1.1",
     "@storybook/addon-interactions": "^7.1.1",
     "@storybook/addon-links": "^7.1.1",
@@ -105,7 +105,7 @@
     "stylis-plugin-rtl": "^2.1.1",
     "typescript": "^5.1.6",
     "vite": "^4.4.7",
-    "vite-plugin-dts": "^2.3.0",
-    "vitest": "^0.32.2"
+    "vite-plugin-dts": "^3.4.0",
+    "vitest": "^0.33.0"
   }
 }

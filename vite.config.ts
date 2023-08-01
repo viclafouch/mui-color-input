@@ -48,7 +48,6 @@ export default defineConfig({
     peerDepsExternal(),
     react(),
     dts({
-      exclude: ['src/components/**/*'],
       insertTypesEntry: true
     })
   ]
