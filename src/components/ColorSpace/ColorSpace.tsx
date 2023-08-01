@@ -23,6 +23,7 @@ const ColorSpace = (props: ColorSpaceProps) => {
     if (!spaceRef.current) {
       return
     }
+
     const { x, y } = getNewThumbPosition(spaceRef.current, clientX, clientY)
     onChange({
       s: x,

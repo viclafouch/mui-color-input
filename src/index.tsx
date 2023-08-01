@@ -22,11 +22,11 @@ import type {
 } from './index.types'
 
 export type {
+  MuiColorButtonProps,
+  MuiColorInputColors,
   MuiColorInputFormat,
   MuiColorInputProps,
   MuiColorInputValue,
-  MuiColorInputColors,
-  MuiColorButtonProps,
   TinyColor
 }
 
@@ -93,6 +93,7 @@ const MuiColorInput = React.forwardRef(
     ) => {
       const newInputValue = event.target.value
       setInputValue(newInputValue)
+
       if (newInputValue === '') {
         setPreviousValue('')
         handleChange('')
@@ -119,10 +120,12 @@ const MuiColorInput = React.forwardRef(
     ) => {
       onBlur?.(event)
       const tinyColorOfInputValue = new TinyColor(inputValue)
+
       if (!tinyColorOfInputValue.isValid) {
         if (inputValue === '') {
           return
         }
+
         const tinyColor = new TinyColor(fallbackValueSafe)
         const newValue = buildValueFromTinyColor(tinyColor, currentFormat)
         setInputValue(newValue)
@@ -153,6 +156,7 @@ const MuiColorInput = React.forwardRef(
     const handleRef = (ref: HTMLDivElement | null): void => {
       // @ts-ignore
       textFieldRef.current = ref
+
       if (propRef) {
         assocRefToPropRef(ref, propRef)
       }
@@ -161,6 +165,7 @@ const MuiColorInput = React.forwardRef(
     const handleInputRef = (ref: HTMLInputElement | null): void => {
       // @ts-ignore
       inputRef.current = ref
+
       if (inputRef) {
         assocRefToPropRef(ref, inputRef)
       }

@@ -15,6 +15,7 @@ export default {
 
 const CustomAdornment = (props: ColorButtonProps) => {
   const { onClick, bgColor } = props
+
   return (
     <Button sx={{ backgroundColor: bgColor }} onClick={onClick}>
       <Icon />
@@ -42,9 +43,11 @@ export const PrimaryLeft: StoryFn<typeof MuiColorInput> = () => {
     />
   )
 }
+
 PrimaryLeft.decorators = [
   (Story) => {
     const theme = createTheme()
+
     return (
       <ThemeProvider theme={theme}>
         <Story />
@@ -74,9 +77,11 @@ export const PrimaryRight: StoryFn<typeof MuiColorInput> = () => {
     />
   )
 }
+
 PrimaryRight.decorators = [
   (Story) => {
     const theme = createTheme()
+
     return (
       <ThemeProvider theme={theme}>
         <Story />
@@ -106,9 +111,11 @@ export const CustomButton: StoryFn<typeof MuiColorInput> = () => {
     />
   )
 }
+
 CustomButton.decorators = [
   (Story) => {
     const theme = createTheme()
+
     return (
       <ThemeProvider theme={theme}>
         <Story />
@@ -125,6 +132,7 @@ RTL.decorators = [
       stylisPlugins: [rtlPlugin]
     })
     const rtlTheme = createTheme({ direction: 'rtl' })
+
     return (
       <CacheProvider value={rtlCache}>
         <div dir="rtl">

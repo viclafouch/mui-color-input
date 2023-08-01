@@ -25,6 +25,7 @@ const ColorPopoverBody = (props: ColorPopoverBodyProps) => {
     if (!matchIsNumber(hue)) {
       return
     }
+
     const newHue = clamp((360 * hue) / 100, 0, 359)
     setCurrentHsv((prevState) => {
       return {
@@ -44,6 +45,7 @@ const ColorPopoverBody = (props: ColorPopoverBodyProps) => {
     if (!matchIsNumber(alphaValue)) {
       return
     }
+
     const tinyColor = currentColor.clone().setAlpha(alphaValue)
     onChange?.(buildValueFromTinyColor(tinyColor, format))
   }

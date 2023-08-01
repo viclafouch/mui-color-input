@@ -21,6 +21,8 @@ export function stringifyInputValue(inputValue: ColorInput): string {
   if (matchIsString(inputValue)) {
     return inputValue
   }
+
   const tinyColor = new TinyColor(inputValue)
+
   return tinyColor.toString()
 }

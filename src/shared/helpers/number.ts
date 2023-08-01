@@ -16,5 +16,6 @@ export function round(
     minimumFractionDigits,
     maximumFractionDigits
   })
+
   return Number(formattedValue)
 }

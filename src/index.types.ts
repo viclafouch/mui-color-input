@@ -14,7 +14,7 @@ export type MuiColorInputFormat = Extract<
   ColorFormats
 >
 
-export type { MuiColorInputValue, ColorButtonProps as MuiColorButtonProps }
+export type { ColorButtonProps as MuiColorButtonProps, MuiColorInputValue }
 
 type PopoverProps = Omit<MuiPopoverProps, 'anchorEl' | 'open' | 'children'>
 
