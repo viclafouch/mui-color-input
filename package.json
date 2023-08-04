@@ -11,13 +11,13 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/mui-color-input.umd.js",
-  "module": "./dist/mui-color-input.es.js",
+  "main": "./dist/mui-color-input.es.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/mui-color-input.es.js",
-      "require": "./dist/mui-color-input.umd.js"
+      "default": "./dist/mui-color-input.es.js",
+      "types": "./dist/index.d.ts"
     }
   },
   "repository": {
@@ -37,7 +37,7 @@
     "material"
   ],
   "scripts": {
-    "build": "vite build",
+    "build": "npm run lint && npm run test -- run && vite build",
     "lint": "tsc && eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "npm run lint -- --fix",
     "storybook": "storybook dev -p 6006",
@@ -73,23 +73,23 @@
   },
   "devDependencies": {
     "@emotion/cache": "^11.11.0",
-    "@storybook/addon-actions": "^7.1.1",
+    "@storybook/addon-actions": "^7.2.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.14.2",
+    "@mui/material": "^5.14.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "@types/react": "^18.2.18",
-    "@storybook/addon-essentials": "^7.1.1",
-    "@storybook/addon-interactions": "^7.1.1",
-    "@storybook/addon-links": "^7.1.1",
-    "@storybook/react": "^7.1.1",
-    "@storybook/react-vite": "^7.1.1",
+    "@storybook/addon-essentials": "^7.2.1",
+    "@storybook/addon-interactions": "^7.2.1",
+    "@storybook/addon-links": "^7.2.1",
+    "@storybook/react": "^7.2.1",
+    "@storybook/react-vite": "^7.2.1",
     "@storybook/testing-library": "^0.2.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
-    "@types/node": "^20.4.5",
+    "@types/node": "^20.4.7",
     "@types/stylis": "^4.2.0",
     "@types/testing-library__jest-dom": "^5.14.9",
     "@viclafouch/eslint-config-viclafouch": "^4.1.1",
@@ -97,15 +97,15 @@
     "eslint": "^8.46.0",
     "husky": "^8.0.3",
     "jsdom": "^22.1.0",
-    "prettier": "^3.0.0",
+    "prettier": "^3.0.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "standard-version": "^9.5.0",
-    "storybook": "^7.1.1",
+    "storybook": "^7.2.1",
     "stylis": "^4.3.0",
     "stylis-plugin-rtl": "^2.1.1",
     "typescript": "^5.1.6",
-    "vite": "^4.4.7",
-    "vite-plugin-dts": "^3.4.0",
-    "vitest": "^0.33.0"
+    "vite": "^4.4.8",
+    "vite-plugin-dts": "^3.5.0",
+    "vitest": "^0.34.1"
   }
 }
