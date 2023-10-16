@@ -1,10 +1,10 @@
 import React from 'react'
-import type { HSV, Numberify } from '@ctrl/tinycolor'
 import { ARROW_COLOR_SPACE } from '@shared/constants/event'
 import { matchIsArrowKey } from '@shared/helpers/event'
 import { clamp, round } from '@shared/helpers/number'
 import { getNewThumbPosition } from '@shared/helpers/space'
 import { useEvent } from '@shared/hooks/useEvent'
+import type { HSV, Numberify } from '@ctrl/tinycolor'
 import { Styled } from './ColorSpace.styled'
 
 type ColorSpaceProps = {

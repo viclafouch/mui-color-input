@@ -1,5 +1,5 @@
-import { styled } from '@mui/material/styles'
 import { BG_IMAGE_SPACE } from '@shared/constants/styles'
+import { styled } from '@mui/material/styles'
 
 const Styled = {
   Space: styled('div')(() => {
