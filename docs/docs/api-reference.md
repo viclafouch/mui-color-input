@@ -93,7 +93,7 @@ const handleChange = (color, colors) => {
 
 ## `format`
 
-- Default: `"hex"`
+- Default: `"rgb"`
 - Type: `MuiColorInputFormat`
 - Required: `false`
 
