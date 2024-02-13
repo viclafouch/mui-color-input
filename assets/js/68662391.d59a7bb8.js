@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmui_color_input=self.webpackChunkmui_color_input||[]).push([[206],{3769:u=>{u.exports=JSON.parse('{"name":"docusaurus-plugin-content-docs","id":"default"}')}}]);
