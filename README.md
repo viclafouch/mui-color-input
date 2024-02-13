@@ -42,7 +42,7 @@ const MyComponent = () => {
     setValue(newValue)
   }
 
-  return <MuiColorInput value={value} onChange={handleChange} />
+  return <MuiColorInput format="hex" value={value} onChange={handleChange} />
 }
 ```
 

@@ -10,7 +10,9 @@ import '../css/index.css'
 
 const HomepageHeader = () => {
   const { siteConfig } = useDocusaurusContext()
-  const [color, setColor] = React.useState<MuiColorInputValue>('#ffffff')
+  const [color, setColor] = React.useState<MuiColorInputValue>(
+    'rgba(234, 18, 18, 0.87)'
+  )
 
   const handleChangeColor = (newColor: MuiColorInputValue) => {
     setColor(newColor)
@@ -39,7 +41,11 @@ const HomepageHeader = () => {
           </Link>
           .
         </p>
-        <MuiColorInput value={color} onChange={handleChangeColor} />
+        <MuiColorInput
+          format="rgb"
+          value={color}
+          onChange={handleChangeColor}
+        />
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
