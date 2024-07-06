@@ -16,6 +16,22 @@ yarn add mui-color-input
 
 We have completed installing the package.
 
+## Next.js integration
+
+Learn how to use MUI color input with Next.js
+
+Once you have installed `MUI Color Input` in your next.js project, it is important to transpile it as it is an ESM package first.
+
+```js
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+ transpilePackages: ['mui-color-input'],
+ // your config
+}
+
+module.exports = nextConfig
+```
+
 ## Simple usage
 
 Here is a simple usage for using the component:
