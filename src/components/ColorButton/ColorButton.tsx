@@ -29,6 +29,8 @@ const ColorButton = (props: ColorButtonProps) => {
         cursor: disablePopover ? 'default' : undefined
       }}
       className={`MuiColorInput-Button ${className || ''}`}
+      variant="text"
+      disableElevation={false}
       {...restButtonProps}
     />
   )
