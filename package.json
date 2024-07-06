@@ -45,7 +45,7 @@
     "test": "vitest",
     "release": "standard-version",
     "coverage": "vitest run --coverage",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "standard-version": {
     "scripts": {
@@ -69,42 +69,42 @@
     }
   },
   "dependencies": {
-    "@ctrl/tinycolor": "^4.0.3"
+    "@ctrl/tinycolor": "^4.1.0"
   },
   "devDependencies": {
     "@emotion/cache": "^11.11.0",
     "@storybook/addon-actions": "^7.6.15",
-    "@emotion/react": "^11.11.3",
-    "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.15.10",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "@types/react": "^18.2.55",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/material": "^5.16.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "@types/react": "^18.3.3",
     "@storybook/addon-essentials": "^7.6.15",
     "@storybook/addon-interactions": "^7.6.15",
     "@storybook/addon-links": "^7.6.15",
     "@storybook/react": "^7.6.15",
     "@storybook/react-vite": "^7.6.15",
     "@storybook/testing-library": "^0.2.2",
-    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^14.2.1",
     "@testing-library/user-event": "^14.5.2",
-    "@types/node": "^20.11.17",
-    "@types/stylis": "^4.2.5",
-    "@viclafouch/eslint-config-viclafouch": "^4.6.0",
-    "@vitejs/plugin-react": "^4.2.1",
+    "@types/node": "^20.14.10",
+    "@types/stylis": "^4.2.6",
+    "@viclafouch/eslint-config-viclafouch": "^4.11.0",
+    "@vitejs/plugin-react": "^4.3.1",
     "eslint": "^8.56.0",
-    "husky": "^9.0.10",
-    "jsdom": "^24.0.0",
-    "prettier": "^3.2.5",
+    "husky": "^9.0.11",
+    "jsdom": "^24.1.0",
+    "prettier": "^3.3.2",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "standard-version": "^9.5.0",
     "storybook": "^7.6.15",
-    "stylis": "^4.3.1",
+    "stylis": "^4.3.2",
     "stylis-plugin-rtl": "^2.1.1",
-    "typescript": "^5.3.3",
-    "vite": "^5.1.1",
-    "vite-plugin-dts": "^3.7.2",
-    "vitest": "^1.2.2"
+    "typescript": "^5.5.3",
+    "vite": "^5.3.3",
+    "vite-plugin-dts": "^3.9.1",
+    "vitest": "^1.6.0"
   }
 }
