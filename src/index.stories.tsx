@@ -1,17 +1,16 @@
 import React from 'react'
-import rtlPlugin from 'stylis-plugin-rtl'
 import { ColorButtonProps } from '@components/ColorButton/ColorButton'
-import createCache from '@emotion/cache'
-import { CacheProvider } from '@emotion/react'
 import { Button, createTheme, Icon, ThemeProvider } from '@mui/material'
 import { action } from '@storybook/addon-actions'
-import { Meta, StoryFn } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 import { MuiColorInput, MuiColorInputProps, MuiColorInputValue } from './index'
 
-export default {
+const meta = {
   title: 'MuiColorInput',
   component: MuiColorInput
-} as Meta<typeof MuiColorInput>
+} satisfies Meta<typeof MuiColorInput>
+
+export default meta
 
 const CustomAdornment = (props: ColorButtonProps) => {
   const { onClick, bgColor } = props
@@ -23,7 +22,7 @@ const CustomAdornment = (props: ColorButtonProps) => {
   )
 }
 
-export const PrimaryLeft: StoryFn<typeof MuiColorInput> = () => {
+export const PrimaryLeft: StoryObj<typeof MuiColorInput> = () => {
   const [value, setValue] = React.useState<MuiColorInputValue>('')
 
   const handleChange = (
@@ -56,7 +55,7 @@ PrimaryLeft.decorators = [
   }
 ]
 
-export const PrimaryRight: StoryFn<typeof MuiColorInput> = () => {
+export const PrimaryRight: StoryObj<typeof MuiColorInput> = () => {
   const [value, setValue] = React.useState<MuiColorInputValue>('black')
 
   const handleChange = (
@@ -90,7 +89,7 @@ PrimaryRight.decorators = [
   }
 ]
 
-export const CustomButton: StoryFn<typeof MuiColorInput> = () => {
+export const CustomButton: StoryObj<typeof MuiColorInput> = () => {
   const [value, setValue] = React.useState<MuiColorInputValue>('black')
 
   const handleChange = (
@@ -120,27 +119,6 @@ CustomButton.decorators = [
       <ThemeProvider theme={theme}>
         <Story />
       </ThemeProvider>
-    )
-  }
-]
-
-export const RTL: StoryFn<typeof MuiColorInput> = PrimaryLeft.bind({})
-RTL.decorators = [
-  (Story) => {
-    const rtlCache = createCache({
-      key: 'muirtl',
-      stylisPlugins: [rtlPlugin]
-    })
-    const rtlTheme = createTheme({ direction: 'rtl' })
-
-    return (
-      <CacheProvider value={rtlCache}>
-        <div dir="rtl">
-          <ThemeProvider theme={rtlTheme}>
-            <Story />
-          </ThemeProvider>
-        </div>
-      </CacheProvider>
     )
   }
 ]
