@@ -6,12 +6,13 @@ export function buildValueFromTinyColor(
   tinyColor: TinyColor,
   format: MuiColorInputFormat
 ): string {
-  return tinyColor.toString(format)
+  return tinyColor.isValid
+    ? tinyColor.toString(format)
+    : tinyColor.originalInput.toString()
 }
 
 export function getSafeTinyColor(
   color?: MuiColorInputValue,
-  fallbackColor?: MuiColorInputValue,
   options?: Partial<TinyColorOptions>
 ): TinyColor {
   return new TinyColor(color, options)

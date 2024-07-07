@@ -3,7 +3,7 @@ import ColorButton from '@components/ColorButton/ColorButton'
 import ColorPopover from '@components/ColorPopover/ColorPopover'
 import ColorPopoverBody from '@components/ColorPopoverBody/ColorPopoverBody'
 import ColorTextField from '@components/ColorTextField/ColorTextField'
-import { COLOR_FALLBACK, FORMAT_FALLBACK } from '@shared/constants/fallback'
+import { FORMAT_FALLBACK } from '@shared/constants/fallback'
 import {
   buildValueFromTinyColor,
   getSafeTinyColor,
@@ -50,15 +50,13 @@ const MuiColorInput = React.forwardRef(
     } = props
     const { onBlur, InputProps, ...restTextFieldProps } = restProps
     const { onClose, ...restPopoverProps } = PopoverProps || {}
-    const fallbackValueSafe: MuiColorInputValue =
-      fallbackValue || COLOR_FALLBACK
     const isDisabled =
       restTextFieldProps.disabled || InputProps?.disabled || false
-    const textFieldRef = React.useRef<HTMLDivElement>(null)
-    const inputRef = React.useRef<HTMLInputElement>(null)
+    const textFieldRef = React.useRef<HTMLDivElement | null>(null)
+    const inputRef = React.useRef<HTMLInputElement | null>(null)
     const [anchorEl, setAnchorEl] = React.useState<HTMLDivElement | null>(null)
     const currentFormat: MuiColorInputFormat = format || FORMAT_FALLBACK
-    const currentTinyColor = getSafeTinyColor(value, fallbackValueSafe, {
+    const currentTinyColor = getSafeTinyColor(value, {
       format: currentFormat
     })
     const [inputValue, setInputValue] =
@@ -79,6 +77,7 @@ const MuiColorInput = React.forwardRef(
 
     const handleChange = (newValue: string) => {
       const tinyColor = new TinyColor(newValue)
+
       onChange?.(newValue, {
         hex: tinyColor.isValid ? tinyColor.toHexString() : '',
         hsv: tinyColor.isValid ? tinyColor.toHsvString() : '',
@@ -126,11 +125,13 @@ const MuiColorInput = React.forwardRef(
           return
         }
 
-        const tinyColor = new TinyColor(fallbackValueSafe)
-        const newValue = buildValueFromTinyColor(tinyColor, currentFormat)
-        setInputValue(newValue)
-        setPreviousValue(newValue)
-        handleChange(newValue)
+        if (fallbackValue) {
+          const tinyColor = new TinyColor(fallbackValue)
+          const newValue = buildValueFromTinyColor(tinyColor, currentFormat)
+          setInputValue(newValue)
+          setPreviousValue(newValue)
+          handleChange(newValue)
+        }
       } else if (tinyColorOfInputValue.format !== currentFormat) {
         setInputValue(
           buildValueFromTinyColor(tinyColorOfInputValue, currentFormat)
@@ -140,12 +141,12 @@ const MuiColorInput = React.forwardRef(
 
     React.useEffect(() => {
       if (value !== previousValue) {
-        const tinyColor = getSafeTinyColor(value, fallbackValueSafe)
+        const tinyColor = getSafeTinyColor(value)
         const newValue = tinyColor.originalInput
         setPreviousValue(newValue)
         setInputValue(newValue)
       }
-    }, [value, previousValue, fallbackValueSafe])
+    }, [value, previousValue])
 
     const handlePopoverChange = (newValue: string) => {
       setInputValue(newValue)
@@ -154,7 +155,6 @@ const MuiColorInput = React.forwardRef(
     }
 
     const handleRef = (ref: HTMLDivElement | null): void => {
-      // @ts-ignore
       textFieldRef.current = ref
 
       if (propRef) {
@@ -163,7 +163,6 @@ const MuiColorInput = React.forwardRef(
     }
 
     const handleInputRef = (ref: HTMLInputElement | null): void => {
-      // @ts-ignore
       inputRef.current = ref
 
       if (inputRef) {
