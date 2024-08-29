@@ -1,9 +1,13 @@
 import React from 'react'
-import { ColorButtonProps } from '@components/ColorButton/ColorButton'
+import type { ColorButtonProps } from '@components/ColorButton/ColorButton'
 import { Button, createTheme, Icon, ThemeProvider } from '@mui/material'
 import { action } from '@storybook/addon-actions'
 import type { Meta, StoryObj } from '@storybook/react'
-import { MuiColorInput, MuiColorInputProps, MuiColorInputValue } from './index'
+import {
+  MuiColorInput,
+  type MuiColorInputProps,
+  type MuiColorInputValue
+} from './index'
 
 const meta = {
   title: 'MuiColorInput',

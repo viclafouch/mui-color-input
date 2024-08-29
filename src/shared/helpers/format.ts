@@ -1,5 +1,9 @@
 import { matchIsString } from '@shared/helpers/string'
-import { ColorInput, TinyColor, TinyColorOptions } from '@ctrl/tinycolor'
+import {
+  type ColorInput,
+  TinyColor,
+  type TinyColorOptions
+} from '@ctrl/tinycolor'
 import type { MuiColorInputFormat, MuiColorInputValue } from '../../index.types'
 
 export function buildValueFromTinyColor(
