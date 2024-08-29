@@ -179,7 +179,6 @@ const MuiColorInput = React.forwardRef(
           disabled={isDisabled}
           aria-describedby={id}
           disablePopover={disablePopover || false}
-          // @ts-ignore
           component={disablePopover ? 'span' : undefined}
           bgColor={currentTinyColor.toString()}
           isBgColorValid={Boolean(
