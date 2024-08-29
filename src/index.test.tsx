@@ -5,7 +5,6 @@ import {
   type MuiColorInputColors,
   type MuiColorInputProps
 } from './index'
-import '@testing-library/jest-dom/vitest'
 
 const MuiColorInputWrapper = (props: Partial<MuiColorInputProps>) => {
   const { onChange, ...rest } = props
