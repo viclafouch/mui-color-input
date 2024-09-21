@@ -2,8 +2,7 @@ import { defineConfig } from 'vitest/config'
 import react from '@vitejs/plugin-react'
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 import dts from 'vite-plugin-dts'
-
-const path = require('path')
+import path from 'node:path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -11,12 +10,12 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true
   },
-  resolve:{
-    alias:{
-      '@assets' : path.resolve(__dirname, './src/assets'),
-      '@shared' : path.resolve(__dirname, './src/shared'),
-      '@components' : path.resolve(__dirname, './src/components'),
-    },
+  resolve: {
+    alias: {
+      '@assets': path.resolve(__dirname, './src/assets'),
+      '@shared': path.resolve(__dirname, './src/shared'),
+      '@components': path.resolve(__dirname, './src/components')
+    }
   },
   build: {
     target: 'esnext',
@@ -39,7 +38,7 @@ export default defineConfig({
           '@mui/material/TextField': 'TextField',
           '@mui/material/InputAdornment': 'InputAdornment',
           '@mui/material/styles': 'styles',
-          'react/jsx-runtime': 'jsxRuntime',
+          'react/jsx-runtime': 'jsxRuntime'
         }
       }
     }
@@ -47,6 +46,9 @@ export default defineConfig({
   plugins: [
     peerDepsExternal(),
     react(),
-    dts({ rollupTypes: true, exclude: ['/**/*.stories.tsx', '/**/*.test.tsx'] })
+    dts({
+      rollupTypes: true,
+      exclude: ['/**/*.stories.tsx', '/**/*.test.tsx']
+    })
   ]
 })

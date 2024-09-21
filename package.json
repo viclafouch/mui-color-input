@@ -52,7 +52,7 @@
   },
   "standard-version": {
     "scripts": {
-      "prerelease": "npm run build"
+      "prerelease": "pnpm build"
     },
     "skip": {
       "changelog": true
