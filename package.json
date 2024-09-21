@@ -13,10 +13,11 @@
   ],
   "main": "./dist/mui-color-input.es.js",
   "types": "./dist/index.d.ts",
+  "type": "module",
   "exports": {
     ".": {
-      "import": "./dist/mui-color-input.es.js",
       "types": "./dist/index.d.ts",
+      "import": "./dist/mui-color-input.es.js",
       "default": "./dist/mui-color-input.es.js"
     }
   },
@@ -37,9 +38,10 @@
     "material"
   ],
   "scripts": {
-    "build": "pnpm lint && pnpm test -- run && vite build",
+    "build": "pnpm lint && pnpm test -- run && vite build && pnpm check-types",
     "lint": "tsc && eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "pnpm lint -- --fix",
+    "check-types": "attw --pack . --ignore-rules cjs-resolves-to-esm",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "vitest",
@@ -77,23 +79,24 @@
     "@emotion/cache": "^11.13.1",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
-    "@mui/material": "^6.0.0",
+    "@mui/material": "^6.1.1",
     "@storybook/addon-actions": "^8.3.2",
     "@storybook/addon-essentials": "^8.3.2",
     "@storybook/addon-interactions": "^8.3.2",
     "@storybook/addon-links": "^8.3.2",
+    "@arethetypeswrong/cli": "^0.16.4",
     "@storybook/react": "^8.3.2",
     "@storybook/react-vite": "^8.3.2",
     "@storybook/test": "^8.3.2",
     "@testing-library/react": "^14.2.1",
     "@testing-library/user-event": "^14.5.2",
-    "@types/node": "^22.5.1",
-    "@types/react": "^18.3.4",
+    "@types/node": "^22.5.5",
+    "@types/react": "^18.3.8",
     "@types/stylis": "^4.2.6",
-    "@viclafouch/eslint-config-viclafouch": "^4.15.0",
+    "@viclafouch/eslint-config-viclafouch": "^4.16.0",
     "@vitejs/plugin-react": "^4.3.1",
     "eslint": "^8.56.0",
-    "husky": "^9.1.5",
+    "husky": "^9.1.6",
     "jsdom": "^25.0.0",
     "prettier": "^3.3.3",
     "react": "^18.3.1",
@@ -103,9 +106,9 @@
     "storybook": "^8.3.2",
     "stylis": "^4.3.4",
     "stylis-plugin-rtl": "^2.1.1",
-    "typescript": "^5.5.4",
-    "vite": "^5.4.2",
-    "vite-plugin-dts": "^4.0.3",
-    "vitest": "^2.0.5"
+    "typescript": "^5.6.2",
+    "vite": "^5.4.7",
+    "vite-plugin-dts": "^4.2.1",
+    "vitest": "^2.1.1"
   }
 }
