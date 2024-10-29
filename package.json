@@ -47,8 +47,7 @@
     "test": "vitest",
     "release": "standard-version",
     "coverage": "vitest run --coverage",
-    "prepare": "husky",
-    "preinstall": "npx only-allow pnpm"
+    "prepare": "husky"
   },
   "standard-version": {
     "scripts": {
