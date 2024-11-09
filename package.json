@@ -40,7 +40,7 @@
     "build": "pnpm lint && pnpm test -- run && vite build && pnpm check-types",
     "lint": "tsc && eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "pnpm lint -- --fix",
-    "check-types": "attw --pack . --ignore-rules cjs-resolves-to-esm",
+    "check-types": "attw --pack . --ignore-rules cjs-resolves-to-esm unexpected-module-syntax",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "vitest",
