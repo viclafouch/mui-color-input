@@ -11,6 +11,7 @@ import {
 } from '@shared/helpers/format'
 import { assocRefToPropRef } from '@shared/helpers/ref'
 import { TinyColor } from '@ctrl/tinycolor'
+import type { TextFieldProps } from '@mui/material'
 import InputAdornment from '@mui/material/InputAdornment'
 import type { PopoverProps } from '@mui/material/Popover'
 import type {
@@ -30,13 +31,15 @@ export type {
   TinyColor
 }
 
+export { ColorButton as MuiColorInputButton }
+
 export function matchIsValidColor(color: MuiColorInputValue): boolean {
   return new TinyColor(color).isValid
 }
 
 const MuiColorInput = React.forwardRef(
-  (props: MuiColorInputProps, propRef: MuiColorInputProps['ref']) => {
-    const {
+  (
+    {
       value,
       format,
       onChange,
@@ -47,11 +50,12 @@ const MuiColorInput = React.forwardRef(
       isAlphaHidden,
       disablePopover,
       ...restProps
-    } = props
-    const { onBlur, InputProps, ...restTextFieldProps } = restProps
+    }: MuiColorInputProps,
+    propRef: MuiColorInputProps['ref']
+  ) => {
+    const { onBlur, slotProps, ...restTextFieldProps } = restProps
     const { onClose, ...restPopoverProps } = PopoverProps || {}
-    const isDisabled =
-      restTextFieldProps.disabled || InputProps?.disabled || false
+    const isDisabled = restTextFieldProps.disabled || false
     const textFieldRef = React.useRef<HTMLDivElement | null>(null)
     const inputRef = React.useRef<HTMLInputElement | null>(null)
     const [anchorEl, setAnchorEl] = React.useState<HTMLDivElement | null>(null)
@@ -87,9 +91,7 @@ const MuiColorInput = React.forwardRef(
       })
     }
 
-    const handleInputChange = (
-      event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       const newInputValue = event.target.value
       setInputValue(newInputValue)
 
@@ -114,9 +116,7 @@ const MuiColorInput = React.forwardRef(
       })
     }
 
-    const handleBlur = (
-      event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>
-    ) => {
+    const handleBlur = (event: React.FocusEvent<HTMLInputElement, Element>) => {
       onBlur?.(event)
       const tinyColorOfInputValue = new TinyColor(inputValue)
 
@@ -156,18 +156,12 @@ const MuiColorInput = React.forwardRef(
 
     const handleRef = (ref: HTMLDivElement | null): void => {
       textFieldRef.current = ref
-
-      if (propRef) {
-        assocRefToPropRef(ref, propRef)
-      }
+      assocRefToPropRef(ref, propRef)
     }
 
     const handleInputRef = (ref: HTMLInputElement | null): void => {
       inputRef.current = ref
-
-      if (inputRef) {
-        assocRefToPropRef(ref, inputRef)
-      }
+      assocRefToPropRef(ref, inputRef)
     }
 
     const isOpen = Boolean(anchorEl)
@@ -189,14 +183,13 @@ const MuiColorInput = React.forwardRef(
       </InputAdornment>
     )
 
-    const colorAdornment =
-      adornmentPosition === 'start'
-        ? {
-            startAdornment: colorButton
-          }
-        : {
-            endAdornment: colorButton
-          }
+    const { input, ...restSlotProps } = slotProps || {}
+
+    const inputSlotProps: NonNullable<TextFieldProps['slotProps']>['input'] = {
+      startAdornment: adornmentPosition === 'start' ? colorButton : undefined,
+      endAdornment: adornmentPosition === 'end' ? colorButton : undefined,
+      ...input
+    }
 
     return (
       <>
@@ -210,9 +203,9 @@ const MuiColorInput = React.forwardRef(
           onBlur={handleBlur}
           inputRef={handleInputRef}
           disabled={isDisabled}
-          InputProps={{
-            ...colorAdornment,
-            ...InputProps
+          slotProps={{
+            input: inputSlotProps,
+            ...restSlotProps
           }}
           {...restTextFieldProps}
         />

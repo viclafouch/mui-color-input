@@ -20,7 +20,14 @@ type PopoverProps = Omit<MuiPopoverProps, 'anchorEl' | 'open' | 'children'>
 
 type TextFieldProps = Omit<
   MuiTextFieldProps,
-  'onChange' | 'select' | 'type' | 'multiline' | 'defaultValue'
+  | 'onChange'
+  | 'select'
+  | 'type'
+  | 'multiline'
+  | 'defaultValue'
+  | 'InputProps'
+  | 'inputProps'
+  | 'InputLabelProps'
 >
 
 export type MuiColorInputColors = {
