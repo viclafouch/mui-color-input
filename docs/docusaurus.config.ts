@@ -1,12 +1,7 @@
-/* eslint-disable id-denylist */
-/* eslint-disable @typescript-eslint/no-var-requires */
-// @ts-check
-// Note: type annotations allow type checking and IDEs autocompletion
+import { themes } from 'prism-react-renderer'
+import type * as Preset from '@docusaurus/preset-classic'
+import type { Config } from '@docusaurus/types'
 
-const lightCodeTheme = require('prism-react-renderer/themes/github')
-const darkCodeTheme = require('prism-react-renderer/themes/dracula')
-
-/** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'MUI color input',
   tagline: 'A color input designed for the React library MUI',
@@ -34,8 +29,7 @@ const config = {
   presets: [
     [
       'classic',
-      /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
+      {
         theme: {
           customCss: require.resolve('./src/css/custom.css')
         },
@@ -45,13 +39,13 @@ const config = {
         gtag: {
           trackingID: 'G-SZPGVX9K0M'
         }
-      })
+      } satisfies Preset.Options
     ]
   ],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
+    {
       colorMode: {
         defaultMode: 'dark',
         disableSwitch: false,
@@ -87,10 +81,10 @@ const config = {
         copyright: `Copyright © ${new Date().getFullYear()} by Victor de la Fouchardiere`
       },
       prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme
+        theme: themes.github,
+        darkTheme: themes.dracula
       }
-    })
-}
+    }
+} satisfies Config
 
 module.exports = config
