@@ -43,48 +43,46 @@ const config = {
     ]
   ],
 
-  themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    {
-      colorMode: {
-        defaultMode: 'dark',
-        disableSwitch: false,
-        respectPrefersColorScheme: false
+  themeConfig: {
+    colorMode: {
+      defaultMode: 'dark',
+      disableSwitch: false,
+      respectPrefersColorScheme: false
+    },
+    navbar: {
+      title: 'MUI color input',
+      logo: {
+        alt: 'MUI color input',
+        src: 'img/logo.jpg'
       },
-      navbar: {
-        title: 'MUI color input',
-        logo: {
-          alt: 'MUI color input',
-          src: 'img/logo.jpg'
+      items: [
+        {
+          type: 'doc',
+          docId: 'intro',
+          position: 'left',
+          label: 'Documentation'
         },
-        items: [
-          {
-            type: 'doc',
-            docId: 'intro',
-            position: 'left',
-            label: 'Documentation'
-          },
-          {
-            href: 'https://github.com/viclafouch/mui-color-input',
-            label: 'GitHub',
-            position: 'right'
-          },
-          {
-            href: 'https://www.npmjs.com/package/mui-color-input',
-            label: 'NPM',
-            position: 'right'
-          }
-        ]
-      },
-      footer: {
-        style: 'dark',
-        copyright: `Copyright © ${new Date().getFullYear()} by Victor de la Fouchardiere`
-      },
-      prism: {
-        theme: themes.github,
-        darkTheme: themes.dracula
-      }
+        {
+          href: 'https://github.com/viclafouch/mui-color-input',
+          label: 'GitHub',
+          position: 'right'
+        },
+        {
+          href: 'https://www.npmjs.com/package/mui-color-input',
+          label: 'NPM',
+          position: 'right'
+        }
+      ]
+    },
+    footer: {
+      style: 'dark',
+      copyright: `Copyright © ${new Date().getFullYear()} by Victor de la Fouchardiere`
+    },
+    prism: {
+      theme: themes.github,
+      darkTheme: themes.dracula
     }
+  }
 } satisfies Config
 
 module.exports = config
