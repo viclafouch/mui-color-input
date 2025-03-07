@@ -7,7 +7,7 @@ import React from 'react'
 type Fn = (...args: any[]) => void
 
 export function useEvent(fn: Fn): Fn {
-  const fnRef = React.useRef<Fn>()
+  const fnRef = React.useRef<Fn>(undefined)
 
   fnRef.current = fn
 

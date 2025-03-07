@@ -9,7 +9,7 @@ export type ColorButtonProps = Omit<ButtonProps, 'children'> & {
   disablePopover: boolean
 }
 
-export type ColorButtonElement = (props: ColorButtonProps) => JSX.Element
+export type ColorButtonElement = (props: ColorButtonProps) => React.ReactNode
 
 const ColorButton = (props: ColorButtonProps) => {
   const {

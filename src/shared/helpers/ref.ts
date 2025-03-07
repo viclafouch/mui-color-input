@@ -8,7 +8,6 @@ export function assocRefToPropRef<T extends Element | null>(
   if (typeof propRef === 'function') {
     propRef(ref)
   } else if (propRef && matchIsObject(propRef) && 'current' in propRef) {
-    // @ts-expect-error
     propRef.current = ref
   }
 }
