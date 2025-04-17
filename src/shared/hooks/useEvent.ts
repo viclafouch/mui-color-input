@@ -12,7 +12,6 @@ export function useEvent(fn: Fn): Fn {
   fnRef.current = fn
 
   return React.useCallback((...args) => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     return fnRef.current?.(...args)
   }, [])
 }

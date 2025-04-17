@@ -188,6 +188,7 @@ const MuiColorInput = React.forwardRef(
     const inputSlotProps: NonNullable<TextFieldProps['slotProps']>['input'] = {
       startAdornment: adornmentPosition === 'start' ? colorButton : undefined,
       endAdornment: adornmentPosition === 'end' ? colorButton : undefined,
+      // eslint-disable-next-line @typescript-eslint/no-misused-spread
       ...input
     }
 

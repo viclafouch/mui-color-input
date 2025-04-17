@@ -1,4 +1,5 @@
-import { ARROW_COLOR_SPACE, KEYBOARD_KEY } from '@shared/constants/event'
+import type { ARROW_COLOR_SPACE } from '@shared/constants/event'
+import { KEYBOARD_KEY } from '@shared/constants/event'
 
 export function matchIsArrowKey(
   key: string

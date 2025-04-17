@@ -1,6 +1,7 @@
 import React from 'react'
 import clsx from 'clsx'
-import { MuiColorInput, MuiColorInputValue } from 'mui-color-input'
+import type { MuiColorInputValue } from 'mui-color-input'
+import { MuiColorInput } from 'mui-color-input'
 import Link from '@docusaurus/Link'
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
 import DocusaurusImageUrl from '@site/static/img/logo.jpg'
