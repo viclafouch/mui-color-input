@@ -3,6 +3,10 @@ import ColorButton from '@components/ColorButton/ColorButton'
 import ColorPopover from '@components/ColorPopover/ColorPopover'
 import ColorPopoverBody from '@components/ColorPopoverBody/ColorPopoverBody'
 import ColorTextField from '@components/ColorTextField/ColorTextField'
+import { TinyColor } from '@ctrl/tinycolor'
+import type { TextFieldProps } from '@mui/material'
+import InputAdornment from '@mui/material/InputAdornment'
+import type { PopoverProps } from '@mui/material/Popover'
 import { FORMAT_FALLBACK } from '@shared/constants/fallback'
 import {
   buildValueFromTinyColor,
@@ -10,10 +14,6 @@ import {
   stringifyInputValue
 } from '@shared/helpers/format'
 import { assocRefToPropRef } from '@shared/helpers/ref'
-import { TinyColor } from '@ctrl/tinycolor'
-import type { TextFieldProps } from '@mui/material'
-import InputAdornment from '@mui/material/InputAdornment'
-import type { PopoverProps } from '@mui/material/Popover'
 import type {
   MuiColorButtonProps,
   MuiColorInputColors,
@@ -59,7 +59,7 @@ const MuiColorInput = React.forwardRef(
     const textFieldRef = React.useRef<HTMLDivElement | null>(null)
     const inputRef = React.useRef<HTMLInputElement | null>(null)
     const [anchorEl, setAnchorEl] = React.useState<HTMLDivElement | null>(null)
-    const currentFormat: MuiColorInputFormat = format || FORMAT_FALLBACK
+    const currentFormat = format || FORMAT_FALLBACK
     const currentTinyColor = getSafeTinyColor(value, {
       format: currentFormat
     })
@@ -139,14 +139,40 @@ const MuiColorInput = React.forwardRef(
       }
     }
 
+    const previousFormatRef = React.useRef(currentFormat)
+
     React.useEffect(() => {
-      if (value !== previousValue) {
-        const tinyColor = getSafeTinyColor(value)
-        const newValue = tinyColor.originalInput
+      const isFormatChanged = previousFormatRef.current !== currentFormat
+      previousFormatRef.current = currentFormat
+
+      if (isFormatChanged) {
+        const tinyColor = getSafeTinyColor(inputValue)
+
+        if (tinyColor.isValid) {
+          const reformatted = buildValueFromTinyColor(tinyColor, currentFormat)
+          setInputValue(reformatted)
+          setPreviousValue(reformatted)
+        }
+      }
+
+      if (value === previousValue) {
+        return
+      }
+
+      const valueTinyColor = getSafeTinyColor(value)
+      const previousTinyColor = getSafeTinyColor(previousValue)
+      const isSameColor =
+        valueTinyColor.isValid && previousTinyColor.isValid
+          ? valueTinyColor.equals(previousTinyColor)
+          : false
+
+      if (!isSameColor) {
+        const newValue = valueTinyColor.originalInput
         setPreviousValue(newValue)
         setInputValue(newValue)
       }
-    }, [value, previousValue])
+      // eslint-disable-next-line react-hooks/exhaustive-deps -- inputValue is intentionally excluded to avoid loops
+    }, [value, previousValue, currentFormat])
 
     const handlePopoverChange = (newValue: string) => {
       setInputValue(newValue)
@@ -154,12 +180,12 @@ const MuiColorInput = React.forwardRef(
       handleChange(newValue)
     }
 
-    const handleRef = (ref: HTMLDivElement | null): void => {
+    const handleRef = (ref: HTMLDivElement | null) => {
       textFieldRef.current = ref
       assocRefToPropRef(ref, propRef)
     }
 
-    const handleInputRef = (ref: HTMLInputElement | null): void => {
+    const handleInputRef = (ref: HTMLInputElement | null) => {
       inputRef.current = ref
       assocRefToPropRef(ref, inputRef)
     }
@@ -188,7 +214,7 @@ const MuiColorInput = React.forwardRef(
     const inputSlotProps: NonNullable<TextFieldProps['slotProps']>['input'] = {
       startAdornment: adornmentPosition === 'start' ? colorButton : undefined,
       endAdornment: adornmentPosition === 'end' ? colorButton : undefined,
-      // eslint-disable-next-line @typescript-eslint/no-misused-spread
+      // eslint-disable-next-line @typescript-eslint/no-misused-spread -- spreading MUI slot props which may be a function or object
       ...input
     }
 
