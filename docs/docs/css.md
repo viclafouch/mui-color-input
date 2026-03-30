@@ -10,7 +10,7 @@ Like any component, if you want to override a component's styles using custom cl
 <MuiColorInput className="my-class-name" />
 ```
 
-Then, you can use the differents global class names (see below) to target an element of `MuiColorInput`.
+Then, you can use the different global class names (see below) to target an element of `MuiColorInput`.
 
 | 	Global class                            | Description                                                                                                                   |
 | ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
@@ -27,7 +27,7 @@ For example: target the `.MuiColorInput-HueSlider` global class name to customiz
 ## Example with styled-component / emotion
 
 ```jsx
-import { styled } from 'styled-component' // or emotion
+import { styled } from 'styled-components' // or emotion
 import { MuiColorInput } from 'mui-color-input'
 
 const MuiColorInputStyled = styled(MuiColorInput)`

@@ -3,7 +3,7 @@
 </div>
 <div align="center">
 <h1>Material UI color input</h1>
-  <p>A color input designed for the React library <a href="https://material-ui.com/">Material UI</a></p>
+  <p>A color input designed for the React library <a href="https://mui.com/">MUI</a></p>
 </div>
 <div align="center">
 
@@ -53,13 +53,14 @@ Learn how to use MUI color input with Next.js
 Once you have installed `MUI Color Input` in your next.js project, it is important to transpile it as it is an ESM package first.
 
 ```js
+// next.config.mjs
 /** @type {import('next').NextConfig} */
 const nextConfig = {
  transpilePackages: ['mui-color-input'],
  // your config
 }
 
-module.exports = nextConfig
+export default nextConfig
 ```
 
 ## [Documentation](https://viclafouch.github.io/mui-color-input/)

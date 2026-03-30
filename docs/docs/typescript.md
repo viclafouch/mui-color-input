@@ -1,3 +1,7 @@
+---
+sidebar_position: 6
+---
+
 # TypeScript
 
 This package is written in **TypeScript**. So you don't need to create your own types. Here an example if you use **TypeScript**.
@@ -10,7 +14,8 @@ import {
   MuiColorInput,
   type MuiColorInputValue,
   type MuiColorInputColors,
-  type MuiColorInputFormat
+  type MuiColorInputFormat,
+  type MuiColorInputProps
 } from 'mui-color-input'
 
 const MyComponent = () => {

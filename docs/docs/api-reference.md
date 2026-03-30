@@ -137,3 +137,55 @@ Whether to show input controls for a color’s alpha channel.
 <MuiColorInput isAlphaHidden />
 ```
 
+## `adornmentPosition`
+
+- Default: `"start"`
+- Type: `"start" | "end"`
+- Required: `false`
+
+The position of the color button adornment relative to the text input.
+
+```tsx
+<MuiColorInput adornmentPosition="end" />
+```
+
+## `disablePopover`
+
+- Default: `false`
+- Type: `boolean`
+- Required: `false`
+
+Whether to disable the color picker popover. When set to `true`, clicking the color button will not open the popover.
+
+```tsx
+<MuiColorInput disablePopover />
+```
+
+## `Adornment`
+
+- Default: `MuiColorInputButton`
+- Type: `(props: MuiColorButtonProps) => React.ReactNode`
+- Required: `false`
+
+A custom component to replace the default color button adornment.
+
+```tsx
+const MyCustomButton = (props) => {
+  return <button style={{ backgroundColor: props.bgColor }} {...props} />
+}
+
+<MuiColorInput Adornment={MyCustomButton} />
+```
+
+## `PopoverProps`
+
+- Default: `undefined`
+- Type: `PopoverProps`
+- Required: `false`
+
+Props passed to the MUI [Popover](https://mui.com/material-ui/api/popover/) component (except `anchorEl`, `open`, and `children` which are managed internally).
+
+```tsx
+<MuiColorInput PopoverProps={{ anchorOrigin: { vertical: ‘bottom’, horizontal: ‘left’ } }} />
+```
+

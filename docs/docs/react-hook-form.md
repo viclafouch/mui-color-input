@@ -1,3 +1,7 @@
+---
+sidebar_position: 7
+---
+
 # React Hook Form
 
 Here an example if you want to plug `MuiColorInput` to your form using [React Hook Form](https://react-hook-form.com/).
