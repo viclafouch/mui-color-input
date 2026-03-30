@@ -1,6 +1,6 @@
 import React from 'react'
-import { BG_IMAGE_FALLBACK } from '@shared/constants/styles'
 import type { ButtonProps } from '@mui/material/Button'
+import { BG_IMAGE_FALLBACK } from '@shared/constants/styles'
 import { Styled } from './ColorButton.styled'
 
 export type ColorButtonProps = Omit<ButtonProps, 'children'> & {

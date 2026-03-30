@@ -1,8 +1,8 @@
 import React from 'react'
+import { action } from 'storybook/actions'
 import type { ColorButtonProps } from '@components/ColorButton/ColorButton'
 import { Button, createTheme, Icon, ThemeProvider } from '@mui/material'
-import { action } from '@storybook/addon-actions'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import {
   MuiColorInput,
   type MuiColorInputProps,

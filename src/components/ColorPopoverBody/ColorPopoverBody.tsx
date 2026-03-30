@@ -2,10 +2,10 @@ import React from 'react'
 import AlphaSlider from '@components/AlphaSlider/AlphaSlider'
 import ColorSpace from '@components/ColorSpace/ColorSpace'
 import HueSlider from '@components/HueSlider/HueSlider'
-import { buildValueFromTinyColor } from '@shared/helpers/format'
-import { clamp, matchIsNumber } from '@shared/helpers/number'
 import { type HSV, type Numberify, TinyColor } from '@ctrl/tinycolor'
 import Box from '@mui/material/Box'
+import { buildValueFromTinyColor } from '@shared/helpers/format'
+import { clamp, matchIsNumber } from '@shared/helpers/number'
 import type { MuiColorInputFormat, MuiColorInputProps } from '../../index.types'
 
 type ColorPopoverBodyProps = {

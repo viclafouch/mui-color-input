@@ -12,7 +12,6 @@ const Styled = {
 
       '& .MuiSlider-rail': {
         opacity: 1,
-        // TODO: find better way for perf
         background: `linear-gradient(to right, rgba(var(--rgb-r), var(--rgb-g), var(--rgb-b), 0) 0%, rgba(var(--rgb-r), var(--rgb-g), var(--rgb-b), 1) 100%)`
       },
 

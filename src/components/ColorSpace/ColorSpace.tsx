@@ -1,10 +1,10 @@
 import React from 'react'
+import type { HSV, Numberify } from '@ctrl/tinycolor'
 import { ARROW_COLOR_SPACE } from '@shared/constants/event'
 import { matchIsArrowKey } from '@shared/helpers/event'
 import { clamp, round } from '@shared/helpers/number'
 import { getNewThumbPosition } from '@shared/helpers/space'
 import { useEvent } from '@shared/hooks/useEvent'
-import type { HSV, Numberify } from '@ctrl/tinycolor'
 import { Styled } from './ColorSpace.styled'
 
 type ColorSpaceProps = {
@@ -35,6 +35,7 @@ const ColorSpace = (props: ColorSpaceProps) => {
     }
   })
 
+  // eslint-disable-next-line no-restricted-syntax -- stable ref for document event listener in useEffect
   const handlePointerUp = React.useCallback(() => {
     if (isPointerDown.current) {
       isPointerDown.current = false
@@ -42,12 +43,12 @@ const ColorSpace = (props: ColorSpaceProps) => {
     }
   }, [])
 
+  // eslint-disable-next-line no-restricted-syntax -- stable ref for document event listener in useEffect
   const handlePointerMove = React.useCallback((event: PointerEvent) => {
     if (isPointerDown.current) {
       moveThumb(event.clientX, event.clientY)
     }
-    // moveThumb is a useEvent
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- moveThumb is a stable useEvent ref
   }, [])
 
   React.useEffect(() => {
