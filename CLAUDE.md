@@ -19,8 +19,10 @@ A color input designed for the React library MUI built with TinyColor, published
 ## Deploy documentation
 
 ```
-cd docs && GIT_USER=viclafouch pnpm deploy
+cd docs && GIT_USER=viclafouch npx docusaurus deploy
 ```
+
+> **Important:** Never use `pnpm deploy` or `npm run deploy` — `pnpm deploy` is a pnpm workspace command, not Docusaurus. Always use `npx docusaurus deploy` directly.
 
 This builds the Docusaurus site and pushes to the `gh-pages` branch. The site is hosted at https://viclafouch.github.io/mui-color-input/.
 

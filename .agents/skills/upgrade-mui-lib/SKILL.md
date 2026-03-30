@@ -269,7 +269,7 @@ Must succeed with zero warnings.
 ### Deploy docs
 
 ```bash
-GIT_USER=viclafouch npm run deploy
+GIT_USER=viclafouch npx docusaurus deploy
 ```
 
 This pushes the built site to the `gh-pages` branch.

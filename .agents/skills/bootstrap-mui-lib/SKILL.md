@@ -98,7 +98,7 @@ Create a `CLAUDE.md` at the project root following this structure (adapt the pac
 ## Deploy documentation
 
 \`\`\`
-cd docs && GIT_USER=viclafouch npm run deploy
+cd docs && GIT_USER=viclafouch npx docusaurus deploy
 \`\`\`
 
 This builds the Docusaurus site and pushes to the `gh-pages` branch.
@@ -444,7 +444,7 @@ Generate GitHub Release markdown following the project's existing format (check 
 - `npm run release -- --release-as major`
 - `npm publish`
 - Create GitHub Release with the provided markdown
-- `cd docs && GIT_USER=viclafouch npm run deploy`
+- `cd docs && GIT_USER=viclafouch npx docusaurus deploy`
 - Update `mui-<name>` version in `docs/package.json` after npm publish
 
 ---
