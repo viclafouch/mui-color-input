@@ -38,6 +38,7 @@ export type MuiColorInputColors = {
   hex8: string
 }
 
+// eslint-disable-next-line @typescript-eslint/consistent-type-definitions -- interface required for consumer declaration merging
 export interface MuiColorInputProps extends TextFieldProps {
   value: MuiColorInputValue
   adornmentPosition?: 'start' | 'end'
