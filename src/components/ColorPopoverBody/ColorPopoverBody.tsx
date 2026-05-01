@@ -74,7 +74,7 @@ const ColorPopoverBody = (props: ColorPopoverBodyProps) => {
         hsv={currentHsv}
         onChange={handleChangeSpace}
       />
-      <Box mt="10px" px="3px">
+      <Box sx={{ mt: '10px', px: '3px' }}>
         <HueSlider
           min={0}
           max={100}
@@ -85,7 +85,7 @@ const ColorPopoverBody = (props: ColorPopoverBodyProps) => {
         />
       </Box>
       {!isAlphaHidden ? (
-        <Box mt="10px" px="3px">
+        <Box sx={{ mt: '10px', px: '3px' }}>
           <AlphaSlider
             min={0}
             max={1}
